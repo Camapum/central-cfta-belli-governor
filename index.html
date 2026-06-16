@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Central Operacional | CFTA • Belli • Governor</title>
+  <style>
+    :root{
+      --green:#174f3a;
+      --green-2:#236449;
+      --green-3:#0f3728;
+      --green-soft:#eaf4ef;
+      --gold:#c8a85a;
+      --gold-soft:#fff7e5;
+      --ink:#18201c;
+      --muted:#66736d;
+      --line:#dce5df;
+      --bg:#f6f7f5;
+      --card:#ffffff;
+      --red:#b84a44;
+      --red-soft:#fff0ee;
+      --orange:#b8742b;
+      --orange-soft:#fff5ea;
+      --blue:#315d86;
+      --blue-soft:#eef4fb;
+      --purple:#5c4784;
+      --purple-soft:#f4f0fb;
+      --shadow:0 12px 30px rgba(20,40,30,.10);
+      --shadow-sm:0 8px 20px rgba(20,40,30,.06);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:radial-gradient(circle at top left, #edf5ef 0, transparent 34%), var(--bg);
+      color:var(--ink);
+    }
+    button,input,select,textarea{font:inherit}
+    button{border:0;cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    .app{display:grid;grid-template-columns:290px 1fr;min-height:100vh}
+    .sidebar{
+      position:sticky;top:0;height:100vh;padding:22px 18px;background:linear-gradient(180deg,var(--green-3),var(--green));color:#fff;overflow:auto;
+    }
+    .brand{display:flex;gap:12px;align-items:center;padding:10px 8px 24px;border-bottom:1px solid rgba(255,255,255,.16);margin-bottom:18px}
+    .mark{width:46px;height:46px;border-radius:15px;background:#fff;color:var(--green);display:grid;place-items:center;font-weight:950;letter-spacing:-1px;box-shadow:0 12px 26px rgba(0,0,0,.16)}
+    .brand strong{display:block;font-size:15px;letter-spacing:-.02em}.brand span{display:block;font-size:11px;opacity:.78;text-transform:uppercase;letter-spacing:.10em;margin-top:3px}
+    .nav{display:grid;gap:8px;margin-top:14px}.nav button{width:100%;display:flex;align-items:center;gap:10px;text-align:left;border-radius:15px;padding:12px 13px;background:transparent;color:rgba(255,255,255,.82);font-weight:800}.nav button:hover,.nav button.active{background:rgba(255,255,255,.13);color:#fff}.nav button small{margin-left:auto;font-size:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:3px 6px;color:#fff}
+    .side-panel{margin-top:20px;border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:15px;background:rgba(255,255,255,.08)}.side-panel b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}.side-panel p{font-size:12.5px;line-height:1.45;margin:0;color:rgba(255,255,255,.78)}
+    .content{padding:26px 26px 60px;min-width:0}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:18px}.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--green);font-weight:900;text-transform:uppercase;letter-spacing:.11em;background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:999px;box-shadow:var(--shadow-sm)}h1{font-size:clamp(30px,4vw,52px);line-height:.98;letter-spacing:-.055em;margin:14px 0 10px}.subtitle{margin:0;max-width:980px;color:var(--muted);line-height:1.55;font-size:15.5px}.actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.btn{border-radius:999px;padding:10px 14px;font-weight:850;background:var(--green);color:#fff;box-shadow:0 6px 16px rgba(23,79,58,.18);display:inline-flex;gap:8px;align-items:center}.btn.secondary{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}.btn.warn{background:var(--red);color:#fff}.btn.gold{background:var(--gold);color:#2c2410}.btn.small{padding:7px 10px;font-size:12px}.tab{display:none}.tab.active{display:block}.panel{background:#fff;border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:22px;margin-bottom:20px}.panel-title{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:16px}.panel-title h2{margin:0;font-size:19px;letter-spacing:-.025em;color:var(--green)}.panel-title p{margin:4px 0 0;color:var(--muted);font-size:13.5px;line-height:1.45}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.metric{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow-sm)}.metric b{display:block;font-size:30px;letter-spacing:-.045em;color:var(--green)}.metric span{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:5px;font-weight:900}.metric em{font-style:normal;display:block;margin-top:10px;font-size:12.5px;color:#53615b;line-height:1.35}.metric.red b{color:var(--red)}.metric.orange b{color:var(--orange)}.metric.blue b{color:var(--blue)}.filters{display:grid;grid-template-columns:1.2fr .75fr .75fr .75fr;gap:10px;margin-bottom:16px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:14px;background:#fbfcfb;color:var(--ink);padding:11px 12px;outline:none}textarea{min-height:96px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(23,79,58,.10)}label{display:block;font-size:12px;font-weight:900;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.form-grid .full{grid-column:1/-1}.board{display:grid;grid-template-columns:repeat(4,minmax(240px,1fr));gap:15px;align-items:start}.column{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:24px;padding:13px;min-height:520px;box-shadow:var(--shadow-sm)}.col-head{display:flex;align-items:center;justify-content:space-between;padding:10px 7px 14px;border-bottom:1px solid var(--line);margin-bottom:12px}.col-title{display:flex;gap:10px;align-items:center}.dot{width:12px;height:12px;border-radius:50%;background:var(--green)}.dot.done{background:#2c7a4f}.dot.run{background:var(--blue)}.dot.block{background:var(--red)}.dot.dev{background:var(--orange)}.col-title h2{font-size:17px;margin:0;letter-spacing:-.02em}.count{font-size:12px;color:var(--muted);font-weight:900;background:#f1f5f2;border:1px solid var(--line);padding:5px 9px;border-radius:999px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 8px 18px rgba(20,40,30,.055);transition:.18s transform,.18s box-shadow,.18s border-color}.card:hover{transform:translateY(-2px);box-shadow:0 14px 26px rgba(20,40,30,.10);border-color:#bfd3c8}.card h3{margin:0 0 8px;font-size:15.5px;line-height:1.25;letter-spacing:-.015em}.card p{margin:0;color:#53615b;font-size:13px;line-height:1.47}.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.tag{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:900;border-radius:999px;padding:5px 8px;background:#f2f5f3;color:#51605a;border:1px solid var(--line)}.tag.urgente{background:var(--red-soft);color:#a43f39;border-color:#f1ccc8}.tag.alta{background:var(--gold-soft);color:#916212;border-color:#ead6a2}.tag.fixa{background:#eaf4ef;color:#174f3a;border-color:#c8ded1}.tag.manual{background:#eef4fb;color:#315d86;border-color:#cbdcec}.tag.baixa{background:#edf1ed;color:#59665f;border-color:#d7e0da}.tag.media{background:#fff5ea;color:#9a5d20;border-color:#ecd2b5}.meta{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px;font-size:11.5px;color:#68746f}.meta div{background:#fafbfa;border:1px dashed #dfe8e2;border-radius:10px;padding:7px}.card-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.select-mini{padding:7px 9px;border-radius:10px;font-size:12px}.detail{display:none;border-top:1px solid var(--line);margin-top:12px;padding-top:12px;color:#53615b;font-size:12.5px;line-height:1.5}.card.open .detail{display:block}.bar-list{display:grid;gap:12px}.bar-row{display:grid;grid-template-columns:150px 1fr 42px;gap:10px;align-items:center;font-size:12.5px;color:#52605a}.bar{height:12px;border-radius:999px;background:#eef3ef;border:1px solid var(--line);overflow:hidden}.bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--green),var(--gold));min-width:4px}.list{display:grid;gap:10px}.list-item{border:1px solid var(--line);border-radius:16px;padding:13px;background:#fbfcfb}.list-item strong{display:block;font-size:14px;color:var(--ink);margin-bottom:4px}.list-item p{margin:0;color:#53615b;font-size:12.5px;line-height:1.4}.calendar-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.calendar-title{font-size:20px;font-weight:950;color:var(--green);letter-spacing:-.02em}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.day-name{text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900;padding:8px}.day{min-height:110px;border:1px solid var(--line);border-radius:16px;background:#fbfcfb;padding:9px;display:flex;flex-direction:column;gap:6px}.day.muted{opacity:.45;background:#f2f4f2}.day.today{border-color:var(--green);box-shadow:0 0 0 3px rgba(23,79,58,.09)}.day-num{font-size:12px;font-weight:950;color:var(--green)}.event-pill{font-size:10.5px;line-height:1.2;border-radius:9px;padding:5px 6px;background:#fff;border:1px solid var(--line);color:#40504a;overflow:hidden}.event-pill.urgente{border-color:#f1ccc8;background:#fff0ee}.event-pill.alta{border-color:#ead6a2;background:#fff7e5}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:18px;background:#fff}.table{width:100%;border-collapse:separate;border-spacing:0}.table th,.table td{padding:12px 13px;border-bottom:1px solid var(--line);font-size:12.5px;text-align:left;vertical-align:top;line-height:1.35;white-space:nowrap}.table th{background:var(--green);color:#fff;text-transform:uppercase;letter-spacing:.07em;font-size:11px}.table tr:last-child td{border-bottom:0}.table td:first-child{font-weight:850;color:var(--green)}.library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.file-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:15px;box-shadow:var(--shadow-sm)}.file-icon{width:42px;height:42px;border-radius:14px;background:var(--green-soft);display:grid;place-items:center;color:var(--green);font-weight:950;margin-bottom:12px}.file-card h3{font-size:15px;margin:0 0 6px}.file-card p{font-size:12.5px;color:#53615b;line-height:1.42;margin:0}.report-card,.research-card{border:1px solid var(--line);border-radius:20px;background:#fff;padding:18px;box-shadow:var(--shadow-sm)}.report-card h3,.research-card h3{margin:0 0 8px;color:var(--green);letter-spacing:-.02em}.report-card p,.research-card p{margin:0;color:#53615b;font-size:13px;line-height:1.45}.research-card .preview{margin:14px 0;border-radius:16px;background:linear-gradient(135deg,#f6faf7,#eaf4ef);border:1px solid var(--line);padding:14px}.research-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.research-metrics div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}.research-metrics b{display:block;font-size:18px;color:var(--green)}.research-metrics span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:900;margin-top:3px}.routine-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.routine{border:1px solid var(--line);border-radius:18px;padding:15px;background:#fbfcfb}.routine strong{display:block;color:var(--green);font-size:14px;margin-bottom:6px}.routine p{margin:0;color:#53615b;font-size:12.5px;line-height:1.43}.empty{border:1px dashed #cfdad3;border-radius:16px;padding:18px;text-align:center;color:var(--muted);background:#fbfcfb;font-size:13px}.toast{position:fixed;right:22px;bottom:22px;background:var(--green);color:#fff;padding:12px 16px;border-radius:14px;box-shadow:var(--shadow);font-weight:850;display:none;z-index:50}.toast.show{display:block}.footer-note{margin-top:22px;color:#6a766f;font-size:12.5px;line-height:1.5;text-align:center}.mobile-menu{display:none;margin-bottom:14px}
+    @media(max-width:1220px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.nav{grid-template-columns:repeat(4,1fr)}.side-panel{display:none}.board{grid-template-columns:repeat(2,1fr)}.grid-4,.routine-grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.library-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){.content{padding:16px 12px 36px}.topbar{display:block}.actions{justify-content:flex-start;margin-top:14px}.nav{grid-template-columns:1fr 1fr}.panel{border-radius:20px;padding:16px}.board,.grid-4,.grid-3,.grid-2,.form-grid,.library-grid,.routine-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.calendar{gap:5px}.day{min-height:86px;border-radius:12px;padding:6px}.day-name{font-size:10px;padding:5px}.event-pill{display:none}.meta{grid-template-columns:1fr}.sidebar{padding:16px 12px}.table th,.table td{font-size:12px}.research-metrics{grid-template-columns:1fr}}
+    @media print{.sidebar,.actions,.filters,.card-actions,.calendar-tools,.btn,.form-panel{display:none!important}.app{display:block}.content{padding:0}.tab{display:block}.tab:not(.active){display:block}.panel,.metric,.column,.card{box-shadow:none;break-inside:avoid}.board{grid-template-columns:repeat(2,1fr)}body{background:#fff}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="mark">C</div><div><strong>Central Operacional</strong><span>CFTA • Belli • Governor</span></div></div>
+      <nav class="nav" aria-label="Navegação principal">
+        <button class="active" data-tab="dashboard" onclick="openTab('dashboard')">📊 Dashboard <small id="navTotal">0</small></button>
+        <button data-tab="kanban" onclick="openTab('kanban')">🧩 Kanban <small id="navBlocked">0</small></button>
+        <button data-tab="projetosCfta" onclick="openTab('projetosCfta')">📌 Projetos CFTA <small id="navProjects">0</small></button>
+        <button data-tab="congresso" onclick="openTab('congresso')">🏛️ Congresso</button>
+        <button data-tab="calendario" onclick="openTab('calendario')">📅 Calendário</button>
+        <button data-tab="atividades" onclick="openTab('atividades')">➕ Cadastro</button>
+        <button data-tab="biblioteca" onclick="openTab('biblioteca')">📚 Biblioteca</button>
+        <button data-tab="relatorios" onclick="openTab('relatorios')">📝 Relatórios</button>
+        <button data-tab="pesquisas" onclick="openTab('pesquisas')">🗺️ Pesquisas</button>
+        <button data-tab="configuracoes" onclick="openTab('configuracoes')">⚙️ Configurações</button>
+      </nav>
+      <div class="side-panel"><b>Princípio operacional</b><p>Demandas fixas não têm prazo formal, mas devem ser tratadas como prioridade de execução até serem concluídas ou automatizadas.</p></div>
+      <div class="side-panel"><b>Base técnica</b><p>Arquivo autônomo em HTML, CSS e JS, com dados salvos no navegador via localStorage.</p></div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Painel interno • versão 2.0</span>
+          <h1>Operação CFTA<br/>Belli + Governor</h1>
+          <p class="subtitle">Central para acompanhar atividades, agenda, bloqueios, arquivos, relatórios e pesquisas estratégicas. O arquivo continua autônomo, mas agora funciona como um MVP de sistema operacional.</p>
+        </div>
+        <div class="actions">
+          <button class="btn" onclick="openTab('atividades'); setTimeout(()=>document.getElementById('activityTitle').focus(), 80)">Nova atividade</button>
+          <button class="btn secondary" onclick="exportData()">Exportar JSON</button>
+          <button class="btn secondary" onclick="window.print()">Imprimir / PDF</button>
+        </div>
+      </header>
+
+      <section id="dashboard" class="tab active">
+        <div class="grid-4" id="metrics"></div>
+        <div class="grid-2">
+          <section class="panel">
+            <div class="panel-title"><div><h2>Atividades por projeto</h2><p>Distribuição das demandas cadastradas por frente operacional.</p></div></div>
+            <div class="bar-list" id="projectBars"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-title"><div><h2>Prioridades e gargalos</h2><p>Painel rápido para enxergar urgências, bloqueios e fluxo manual.</p></div></div>
+            <div class="bar-list" id="priorityBars"></div>
+          </section>
+        </div>
+        <div class="grid-2">
+          <section class="panel">
+            <div class="panel-title"><div><h2>Próximas entregas</h2><p>Atividades com prazo mais próximo ou rotina fixa relevante.</p></div><button class="btn secondary small" onclick="openTab('calendario')">Ver calendário</button></div>
+            <div class="list" id="nextTasks"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-title"><div><h2>Bloqueios críticos</h2><p>Itens que travam a operação ou exigem solução técnica.</p></div><button class="btn secondary small" onclick="setQuickFilter('bloqueio')">Abrir no Kanban</button></div>
+            <div class="list" id="blockers"></div>
+          </section>
+        </div>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Rotina operacional semanal</h2><p>Fluxo consolidado para manter constância e reduzir perda de informação.</p></div></div>
+          <div class="routine-grid">
+            <div class="routine"><strong>Segunda até 12h</strong><p>Monitorar pautas das comissões. Se não houver pauta de interesse, enviar relatório de ausência.</p></div>
+            <div class="routine"><strong>Todos os dias</strong><p>Jornalzinho diário com resumo de pauta, movimentações e alertas úteis.</p></div>
+            <div class="routine"><strong>Durante a semana</strong><p>Enviar tramitações em tempo real sempre que houver movimentação relevante.</p></div>
+            <div class="routine"><strong>18h manual</strong><p>Enquanto não houver notificação automática, fazer checagem manual de tramitações.</p></div>
+            <div class="routine"><strong>Sexta-feira</strong><p>Enviar matérias novas, tramitações da semana e relatório da consultoria.</p></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="kanban" class="tab">
+        <section class="panel">
+          <div class="panel-title"><div><h2>Kanban operacional</h2><p>Use filtros, abra detalhes e mova atividades entre os quadros.</p></div><button class="btn secondary small" onclick="toggleDetails()">Abrir/fechar detalhes</button></div>
+          <div class="filters">
+            <input id="search" type="search" placeholder="Buscar por projeto, rotina, responsável ou palavra-chave..." oninput="renderAll()" />
+            <select id="statusFilter" onchange="renderAll()">
+              <option value="">Todos os quadros</option>
+              <option value="realizado">Já realizado</option>
+              <option value="andamento">Em andamento</option>
+              <option value="bloqueio">Bloqueios</option>
+              <option value="desenvolvimento">Em desenvolvimento</option>
+            </select>
+            <select id="priorityFilter" onchange="renderAll()">
+              <option value="">Todas as prioridades</option>
+              <option value="urgente">Urgente</option>
+              <option value="alta">Alta</option>
+              <option value="media">Média</option>
+              <option value="baixa">Baixa</option>
+              <option value="fixa">Demanda fixa</option>
+              <option value="manual">Fluxo manual</option>
+            </select>
+            <button class="btn secondary" onclick="clearFilters()">Limpar filtros</button>
+          </div>
+          <div class="board" id="board"></div>
+        </section>
+      </section>
+
+      <section id="projetosCfta" class="tab">
+        <section class="panel">
+          <div class="panel-title"><div><h2>Projetos cadastrados e acompanhados pelo CFTA</h2><p>Base editável com situação, comissão/órgão, ação recomendada, atividades realizadas e próximos passos de cada projeto.</p></div><button class="btn" onclick="resetProjectForm(); document.getElementById('projectCode').focus()">Cadastrar projeto</button></div>
+          <div class="grid-4" id="projectMetrics"></div>
+          <div class="filters" style="margin-top:16px">
+            <input id="projectSearch" type="search" placeholder="Buscar por PL, tema, comissão ou ação..." oninput="renderCftaProjects()" />
+            <select id="projectCommissionFilter" onchange="renderCftaProjects()"><option value="">Todas as comissões/órgãos</option></select>
+            <select id="projectStageFilter" onchange="renderCftaProjects()"><option value="">Todas as situações</option></select>
+            <select id="projectPriorityFilter" onchange="renderCftaProjects()"><option value="">Todas as prioridades</option><option value="urgente">Urgente</option><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option><option value="fixa">Fixa</option></select>
+          </div>
+          <div class="table-wrap"><table class="table"><thead><tr><th>Projeto</th><th>Tema</th><th>Situação atual</th><th>Comissão/órgão</th><th>Ação recomendada</th><th>Atividades</th><th>Ações</th></tr></thead><tbody id="projectsTableBody"></tbody></table></div>
+        </section>
+        <section class="panel form-panel" id="projectFormPanel">
+          <div class="panel-title"><div><h2>Editar / cadastrar projeto acompanhado</h2><p>Essa área permite atualizar manualmente o histórico, o próximo passo e a estratégia de cada proposição.</p></div></div>
+          <form id="projectForm" onsubmit="saveProject(event)">
+            <input type="hidden" id="projectId" />
+            <div class="form-grid">
+              <div><label>Projeto</label><input id="projectCode" required placeholder="Ex.: PL 4110/2024" /></div>
+              <div><label>Comissão / órgão</label><input id="projectCommission" placeholder="Ex.: CCJC, CFT, Senado, CCP" /></div>
+              <div class="full"><label>Tema</label><input id="projectTheme" required placeholder="Tema central da proposição" /></div>
+              <div><label>Situação atual</label><input id="projectSituation" placeholder="Ex.: Pronta para pauta" /></div>
+              <div><label>Prioridade</label><select id="projectPriority"><option value="urgente">Urgente</option><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option><option value="fixa">Fixa</option></select></div>
+              <div><label>Fase operacional</label><input id="projectStage" placeholder="Ex.: Aguardando relator" /></div>
+              <div><label>Responsável</label><input id="projectOwner" placeholder="Ex.: Ana Paula / Vitor" /></div>
+              <div class="full"><label>Ação recomendada</label><textarea id="projectAction"></textarea></div>
+              <div class="full"><label>Atividades já realizadas</label><textarea id="projectDone"></textarea></div>
+              <div class="full"><label>Atividades que iremos realizar</label><textarea id="projectNext"></textarea></div>
+              <div class="full"><label>Observações estratégicas</label><textarea id="projectNotes"></textarea></div>
+            </div>
+            <div class="actions" style="justify-content:flex-start;margin-top:14px"><button class="btn" type="submit">Salvar projeto</button><button type="button" class="btn secondary" onclick="resetProjectForm()">Limpar</button></div>
+          </form>
+        </section>
+      </section>
+
+      <section id="congresso" class="tab">
+        <section class="panel">
+          <div class="panel-title"><div><h2>Consultoria no Congresso</h2><p>Área para controlar atividades desenvolvidas e atividades que serão realizadas pela equipe de consultoria política.</p></div><button class="btn" onclick="resetCongressForm(); document.getElementById('congressTitle').focus()">Nova ação</button></div>
+          <div class="grid-4" id="congressMetrics"></div>
+          <div class="grid-2" style="margin-top:16px">
+            <div class="report-card"><h3>Atividades desenvolvidas</h3><div class="list" id="congressDoneList"></div></div>
+            <div class="report-card"><h3>Atividades a desenvolver</h3><div class="list" id="congressTodoList"></div></div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Mapa tático por comissão</h2><p>Classificação operacional para orientar ocupação, influência, contenção e monitoramento.</p></div></div>
+          <div class="table-wrap"><table class="table"><thead><tr><th>Estratégia</th><th>Comissões</th><th>Objetivo operacional</th></tr></thead><tbody><tr><td>Ocupar</td><td>CAPADR, CRA, CASP</td><td>Manter presença institucional permanente e produzir resultados concretos.</td></tr><tr><td>Influenciar</td><td>CTRAB, CICS, CDU</td><td>Atuação relacional e temática para moldar mérito, redação e ambiente.</td></tr><tr><td>Conter</td><td>CCJC, CFT, CMADS, CMA, CCJ, CAE</td><td>Reduzir risco jurídico, fiscal, ambiental ou procedimental.</td></tr><tr><td>Monitorar</td><td>CVT, CDC, CAS</td><td>Acompanhar com menor custo político, acionando quando houver risco ou oportunidade.</td></tr></tbody></table></div>
+        </section>
+        <section class="panel form-panel" id="congressFormPanel">
+          <div class="panel-title"><div><h2>Editar / cadastrar ação da consultoria</h2><p>Use para registrar reuniões, visitas a gabinetes, busca de relatoria, pareceres e tarefas semanais.</p></div></div>
+          <form id="congressForm" onsubmit="saveCongressAction(event)">
+            <input type="hidden" id="congressId" />
+            <div class="form-grid">
+              <div class="full"><label>Título</label><input id="congressTitle" required /></div>
+              <div><label>Categoria / comissão</label><input id="congressCategory" placeholder="Ex.: CCJC, CFT, CCP" /></div>
+              <div><label>Status</label><select id="congressStatus"><option value="pendente">A desenvolver</option><option value="andamento">Em andamento</option><option value="realizado">Realizado</option></select></div>
+              <div><label>Prioridade</label><select id="congressPriority"><option value="urgente">Urgente</option><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option><option value="fixa">Fixa</option></select></div>
+              <div><label>Responsável</label><input id="congressOwner" /></div>
+              <div class="full"><label>Detalhes / encaminhamento</label><textarea id="congressDetail"></textarea></div>
+            </div>
+            <div class="actions" style="justify-content:flex-start;margin-top:14px"><button class="btn" type="submit">Salvar ação</button><button type="button" class="btn secondary" onclick="resetCongressForm()">Limpar</button></div>
+          </form>
+        </section>
+      </section>
+
+      <section id="calendario" class="tab">
+        <section class="panel">
+          <div class="panel-title"><div><h2>Calendário operacional</h2><p>Visualização mensal dos prazos cadastrados e rotinas fixas.</p></div></div>
+          <div class="calendar-tools"><button class="btn secondary small" onclick="changeMonth(-1)">← Mês anterior</button><div class="calendar-title" id="calendarTitle"></div><button class="btn secondary small" onclick="changeMonth(1)">Próximo mês →</button></div>
+          <div class="calendar" id="calendar"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Agenda fixa da operação</h2><p>Eventos recorrentes para orientar o trabalho semanal.</p></div></div>
+          <div class="table-wrap"><table class="table"><thead><tr><th>Quando</th><th>Rotina</th><th>Entrega esperada</th></tr></thead><tbody><tr><td>Segunda até 12h</td><td>Agenda das comissões</td><td>Pautas de interesse ou relatório de ausência</td></tr><tr><td>Dias úteis</td><td>Jornalzinho diário</td><td>Resumo de movimentações e alertas</td></tr><tr><td>18h</td><td>Checagem manual</td><td>Tramitações enquanto alertas não estiverem ativos</td></tr><tr><td>Sexta-feira</td><td>Fechamento semanal</td><td>Matérias novas, tramitações e relatório da consultoria</td></tr></tbody></table></div>
+        </section>
+      </section>
+
+      <section id="atividades" class="tab">
+        <section class="panel form-panel">
+          <div class="panel-title"><div><h2>Cadastrar atividade</h2><p>Registre demandas, prazos, responsáveis, prioridade e observações.</p></div></div>
+          <form id="activityForm" onsubmit="saveActivity(event)">
+            <input type="hidden" id="activityId" />
+            <div class="form-grid">
+              <div class="full"><label>Título</label><input id="activityTitle" required placeholder="Ex.: Incluir PL 6348/2019 na base prioritária" /></div>
+              <div><label>Projeto / frente</label><select id="activityProject"><option>CFTA</option><option>Belli</option><option>Governor</option><option>Agroindústria</option><option>Relatórios</option><option>Pesquisas</option><option>Sistema</option><option>Congresso</option><option>Comissões</option><option>Assembleias Estaduais</option><option>Outros</option></select></div>
+              <div><label>Responsável</label><input id="activityOwner" placeholder="Ex.: Vitor, Ana Paula, Sistema" /></div>
+              <div><label>Status</label><select id="activityStatus"><option value="realizado">Já realizado</option><option value="andamento">Em andamento</option><option value="bloqueio">Bloqueio</option><option value="desenvolvimento">Em desenvolvimento</option></select></div>
+              <div><label>Prioridade</label><select id="activityPriority"><option value="urgente">Urgente</option><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option><option value="fixa">Demanda fixa</option><option value="manual">Fluxo manual</option></select></div>
+              <div><label>Prazo</label><input id="activityDue" type="date" /></div>
+              <div><label>Tipo</label><select id="activityType"><option>Operacional</option><option>Relatório</option><option>Sistema</option><option>Legislativo</option><option>Pesquisa</option><option>Arquivo</option></select></div>
+              <div class="full"><label>Descrição curta</label><textarea id="activityDescription" placeholder="Explique a demanda em poucas linhas"></textarea></div>
+              <div class="full"><label>Detalhes / encaminhamento</label><textarea id="activityDetail" placeholder="Critérios, fontes, próximos passos, decisão tomada..."></textarea></div>
+            </div>
+            <div class="actions" style="justify-content:flex-start;margin-top:14px"><button class="btn" type="submit">Salvar atividade</button><button type="button" class="btn secondary" onclick="resetActivityForm()">Limpar formulário</button></div>
+          </form>
+        </section>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Tabela de atividades</h2><p>Visão administrativa para editar, excluir ou conferir todas as demandas.</p></div></div>
+          <div class="table-wrap"><table class="table" id="activityTable"></table></div>
+        </section>
+      </section>
+
+      <section id="biblioteca" class="tab">
+        <section class="panel form-panel">
+          <div class="panel-title"><div><h2>Cadastro de arquivos</h2><p>Biblioteca operacional para documentos, PDFs, planilhas, propostas, relatórios e links. O upload real fica registrado como metadado local.</p></div></div>
+          <form id="fileForm" onsubmit="saveFile(event)">
+            <input type="hidden" id="fileId" />
+            <div class="form-grid">
+              <div><label>Arquivo</label><input id="fileInput" type="file" /></div>
+              <div><label>Nome do documento</label><input id="fileName" placeholder="Ex.: Relatório Maio 2026" /></div>
+              <div><label>Categoria</label><select id="fileCategory"><option>Relatório</option><option>Pesquisa</option><option>Planilha</option><option>Proposta</option><option>Imagem</option><option>Legislação</option><option>Outro</option></select></div>
+              <div><label>Projeto vinculado</label><select id="fileProject"><option>CFTA</option><option>Belli</option><option>Governor</option><option>Agroindústria</option><option>Pesquisas</option><option>Congresso</option><option>Comissões</option><option>Assembleias Estaduais</option><option>Outros</option></select></div>
+              <div class="full"><label>Link externo ou caminho local</label><input id="fileLink" placeholder="Cole um link público, caminho interno ou referência do documento" /></div>
+              <div class="full"><label>Observações</label><textarea id="fileNotes" placeholder="Resumo, origem, versão, uso estratégico..."></textarea></div>
+            </div>
+            <div class="actions" style="justify-content:flex-start;margin-top:14px"><button class="btn" type="submit">Salvar arquivo</button><button type="button" class="btn secondary" onclick="resetFileForm()">Limpar formulário</button></div>
+          </form>
+        </section>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Biblioteca de documentos</h2><p>Inventário pesquisável dos materiais da operação.</p></div><input style="max-width:320px" id="fileSearch" placeholder="Buscar arquivo..." oninput="renderFiles()" /></div>
+          <div class="library-grid" id="libraryGrid"></div>
+        </section>
+      </section>
+
+      <section id="relatorios" class="tab">
+        <section class="panel">
+          <div class="panel-title"><div><h2>Relatórios executivos</h2><p>Modelos prontos para acompanhar a operação e gerar sínteses por período.</p></div><button class="btn secondary small" onclick="generateWeeklyReport()">Gerar resumo semanal</button></div>
+          <div class="grid-3" id="reportCards"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Resumo automático</h2><p>Prévia textual gerada com base nas atividades cadastradas.</p></div></div>
+          <div class="list-item" id="autoReport"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Projetos e frentes legislativas em destaque</h2><p>Lista executiva para orientar priorização e acompanhamento.</p></div></div>
+          <div class="table-wrap"><table class="table"><thead><tr><th>Projeto / Bloco</th><th>Tema</th><th>Situação operacional</th><th>Recomendação</th></tr></thead><tbody><tr><td>Bloco inspeção POA<br/><small>PL 1889/2019 + PL 5900/2023 + PL 11087/2018</small></td><td>Inspeção, sanidade e produtos de origem animal</td><td>CAPADR / bloco em tramitação</td><td>Acompanhar prioritariamente</td></tr><tr><td>PL 3981/2024</td><td>Equivalência de inspeção entre UFs</td><td>CCJC / aguarda relator</td><td>Acompanhar prioritariamente</td></tr><tr><td>PL 2775/2019 + apensados</td><td>Alimentos artesanais, circulação e inspeção</td><td>Aguarda relator</td><td>Acompanhar prioritariamente</td></tr><tr><td>PL 6762/2025</td><td>Comercialização, certificação e facilitação sanitária</td><td>Apensado ao PL 2900/2025</td><td>Acompanhar prioritariamente</td></tr><tr><td>PL 4707/2023</td><td>SUASA e agroindústria familiar de pequeno porte</td><td>Apensado ao PL 4734/2020</td><td>Monitorar de perto</td></tr><tr><td>PL 4314/2016</td><td>RIISPOA e exportação de miúdos</td><td>Aprovado na Câmara / Senado Federal</td><td>Acompanhar no Senado</td></tr><tr><td>PL 3584/2015</td><td>Política Nacional de Incentivo às Agroindústrias</td><td>CCJC / pronta para pauta</td><td>Acompanhar</td></tr><tr><td>PL 6348/2019 e PL 3820/2021</td><td>A classificar na base prioritária</td><td>Demanda de inclusão</td><td>Inserir e avaliar impacto CFTA</td></tr></tbody></table></div>
+        </section>
+      </section>
+
+      <section id="pesquisas" class="tab">
+        <section class="panel">
+          <div class="panel-title"><div><h2>Central de pesquisas e painéis</h2><p>Área para organizar estudos interativos, mapas, diagnósticos territoriais e bases públicas de apoio à decisão.</p></div><button class="btn" onclick="addResearchPrompt()">Cadastrar nova pesquisa</button></div>
+          <div class="grid-2" id="researchCards"></div>
+        </section>
+        <section class="panel form-panel" id="researchFormPanel" style="display:none">
+          <div class="panel-title"><div><h2>Cadastrar pesquisa</h2><p>Adicione novos painéis, mapas e estudos externos.</p></div></div>
+          <form id="researchForm" onsubmit="saveResearch(event)">
+            <input type="hidden" id="researchId" />
+            <div class="form-grid">
+              <div><label>Título</label><input id="researchTitle" required /></div>
+              <div><label>Categoria</label><select id="researchCategory"><option>Mapa interativo</option><option>Dashboard</option><option>Diagnóstico territorial</option><option>Relatório técnico</option><option>Base de dados</option></select></div>
+              <div class="full"><label>Link</label><input id="researchLink" required placeholder="https://..." /></div>
+              <div class="full"><label>Descrição</label><textarea id="researchDescription"></textarea></div>
+            </div>
+            <div class="actions" style="justify-content:flex-start;margin-top:14px"><button class="btn" type="submit">Salvar pesquisa</button><button type="button" class="btn secondary" onclick="closeResearchForm()">Cancelar</button></div>
+          </form>
+        </section>
+      </section>
+
+      <section id="configuracoes" class="tab">
+        <section class="panel">
+          <div class="panel-title"><div><h2>Configurações e dados locais</h2><p>Ferramentas para preservar, importar ou limpar as informações do navegador.</p></div></div>
+          <div class="grid-3">
+            <div class="report-card"><h3>Exportar backup</h3><p>Baixe um JSON com atividades, arquivos e pesquisas cadastradas.</p><div class="actions" style="justify-content:flex-start;margin-top:14px"><button class="btn secondary small" onclick="exportData()">Exportar</button></div></div>
+            <div class="report-card"><h3>Importar backup</h3><p>Restaure dados a partir de um JSON exportado anteriormente.</p><input type="file" accept="application/json" onchange="importData(event)" style="margin-top:14px" /></div>
+            <div class="report-card"><h3>Resetar demo</h3><p>Volta aos dados iniciais do painel. Cuidado: substitui os dados salvos.</p><div class="actions" style="justify-content:flex-start;margin-top:14px"><button class="btn warn small" onclick="resetDemo()">Resetar</button></div></div>
+          </div>
+        </section>
+        <p class="footer-note">Este MVP salva dados apenas no navegador usado. Para biblioteca com upload real, login e uso por equipe, a próxima etapa recomendada é migrar para React/Next.js + Supabase/Firebase.</p>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY = 'central-cfta-v2';
+const statuses = {
+  realizado:{label:'Já realizado', dot:'done'},
+  andamento:{label:'Em andamento', dot:'run'},
+  bloqueio:{label:'Bloqueios', dot:'block'},
+  desenvolvimento:{label:'Em desenvolvimento', dot:'dev'}
+};
+const initialData = {
+  activities:[
+    {id:uid(),title:'Relatório de Março/2026 consolidado',project:'Relatórios',owner:'Belli / Ana Paula',status:'realizado',priority:'alta',due:'2026-03-31',type:'Relatório',description:'Documento mensal com síntese executiva, atividades desenvolvidas, avaliação do período e considerações finais.',detail:'Inclui busca de projetos por estado, acompanhamento de tramitações principais e novas movimentações, atuação no PL 4110/2024 na CCJ, PL 4187/2020 e agenda MAPA.'},
+    {id:uid(),title:'Relatório de Maio/2026 produzido',project:'Relatórios',owner:'Belli / Vitor',status:'realizado',priority:'alta',due:'2026-06-05',type:'Relatório',description:'Consolidação mensal das atividades da Belli para o CFTA, com monitoramento legislativo, articulação institucional e bases de dados.',detail:'Organiza entregas de 04 a 15/05, 18 a 22/05, 25 a 29/05 e final de maio/início de junho.'},
+    {id:uid(),title:'Conferência geral de 03/06',project:'CFTA',owner:'Vitor',status:'realizado',priority:'alta',due:'2026-06-03',type:'Operacional',description:'Foram conferidos projetos da Câmara, Senado e Plenário, incluindo principais e aprovados de interesse do CFTA.',detail:'Também foram organizados projetos de agroindústria e matérias das assembleias legislativas.'},
+    {id:uid(),title:'Agenda da semana e boletins de tramitação',project:'CFTA',owner:'Belli',status:'realizado',priority:'alta',due:'2026-06-07',type:'Operacional',description:'Informes semanais com agenda legislativa, tramitações e matérias de interesse.',detail:'Inclui e-mails de agenda, relatório de atividades, relatório de tramitação, planilhas de agroindústria e matérias estaduais.'},
+    {id:uid(),title:'Mapeamento político e comissões',project:'Belli',owner:'Ana Paula',status:'realizado',priority:'alta',due:'2026-05-28',type:'Legislativo',description:'Documentos de perfil de membros, lideranças influentes e projetos centrais por comissão.',detail:'Base útil para identificar portas de entrada, relatores, presidentes, lideranças partidárias e resistência procedimental.'},
+    {id:uid(),title:'Agenda Legislativa da Agroindústria',project:'Agroindústria',owner:'Belli / Vitor',status:'realizado',priority:'alta',due:'2026-06-11',type:'Legislativo',description:'Relatório executivo e sinopse de projetos com aderência à agroindústria e responsabilidade técnica.',detail:'Abrange bloco de inspeção de POA, PL 3981/2024, PL 2775/2019, PL 6762/2025, PL 4707/2023, PL 4314/2016 e correlatos.'},
+    {id:uid(),title:'Modelo operacional CFTA/Governor estruturado',project:'Governor',owner:'Sistema',status:'realizado',priority:'alta',due:'2026-06-12',type:'Sistema',description:'Base de funcionamento para monitoramento, classificação de matérias, rotina semanal e alimentação das demandas.',detail:'A base precisa ser ajustada por causa dos bloqueios no módulo de novas proposições e notificações de tramitação.'},
+    {id:uid(),title:'Segunda-feira: agenda das comissões até 12h',project:'CFTA',owner:'Ana Paula',status:'andamento',priority:'fixa',due:'',type:'Operacional',description:'Monitorar pautas das comissões e identificar projetos de interesse do CFTA até meio-dia.',detail:'Caso não haja projetos de interesse, preparar relatório objetivo informando ausência de matérias prioritárias.'},
+    {id:uid(),title:'Tramitação em tempo real durante a semana',project:'CFTA',owner:'Belli',status:'andamento',priority:'urgente',due:'',type:'Operacional',description:'Enviar movimentações relevantes assim que identificadas, especialmente em projetos prioritários.',detail:'Até a ativação das notificações automáticas, reforçar com verificação manual no fim do dia.'},
+    {id:uid(),title:'Verificação manual diária às 18h',project:'Governor',owner:'Vitor',status:'andamento',priority:'manual',due:'',type:'Operacional',description:'Enquanto a notificação não estiver ativa, revisar manualmente as tramitações às 18h.',detail:'Cobrir matérias prioritárias, projetos de agroindústria, proposições federais e bases estaduais monitoradas.'},
+    {id:uid(),title:'Jornalzinho diário',project:'CFTA',owner:'Belli',status:'andamento',priority:'fixa',due:'',type:'Relatório',description:'Produzir e enviar um resumo diário enxuto com movimentações, pautas e alertas de interesse.',detail:'Deve ser objetivo, com foco no que mudou, por que importa para o CFTA e qual ação é recomendada.'},
+    {id:uid(),title:'Sexta-feira: matérias novas e tramitações da semana',project:'CFTA',owner:'Vitor',status:'andamento',priority:'fixa',due:'',type:'Relatório',description:'Enviar matérias novas, tramitações ocorridas na semana e consolidação dos pontos de acompanhamento.',detail:'Enquanto o Governor estiver debilitado, Ana Paula envia manualmente e Vitor compila documento.'},
+    {id:uid(),title:'Relatório semanal da atuação da consultoria',project:'Belli',owner:'Ana Paula / Vitor',status:'andamento',priority:'alta',due:'',type:'Relatório',description:'Montar relatório de atividades da equipe, principalmente sobre a atuação da Ana Paula no Congresso.',detail:'Registrar reuniões, tentativas de pauta, relatorias, contatos em gabinetes e próximos encaminhamentos.'},
+    {id:uid(),title:'Atualização contínua das bases prioritárias',project:'CFTA',owner:'Vitor',status:'andamento',priority:'alta',due:'',type:'Legislativo',description:'Manter bases de agroindústria, matérias estaduais, matérias novas e proposições de alta relevância.',detail:'Triagem deve considerar atribuições profissionais, assistência técnica, defesa agropecuária, fiscalização e correlatos.'},
+    {id:uid(),title:'Governor debilitado em matérias novas',project:'Governor',owner:'Sistema',status:'bloqueio',priority:'urgente',due:'',type:'Sistema',description:'O módulo de novas matérias não está confiável para a operação semanal.',detail:'Até a correção, Ana Paula manda manualmente as matérias novas e Vitor compila em documento para envio na sexta.'},
+    {id:uid(),title:'Filtro de novas proposições com separação incorreta',project:'Governor',owner:'Sistema',status:'bloqueio',priority:'urgente',due:'',type:'Sistema',description:'É necessário separar Câmara Federal, Senado Federal e Legislativo Estadual.',detail:'O filtro deve impedir mistura entre proposições federais e estaduais, mantendo clareza de origem e casa legislativa.'},
+    {id:uid(),title:'Projetos estaduais não abrem em novas proposições',project:'Governor',owner:'Sistema',status:'bloqueio',priority:'urgente',due:'',type:'Sistema',description:'Projetos estaduais aparecem, mas não estão abrindo corretamente na aba.',detail:'Bloqueia a validação de matérias estaduais e aumenta dependência de consulta manual nas assembleias.'},
+    {id:uid(),title:'Notificações de tramitação ainda não habilitadas',project:'Governor',owner:'Sistema',status:'bloqueio',priority:'alta',due:'',type:'Sistema',description:'Sem alertas automáticos, a equipe depende de verificação manual diária.',detail:'Ativar notificações reduz risco operacional e libera tempo para análise estratégica.'},
+    {id:uid(),title:'Padronização de casas legislativas estaduais',project:'Governor',owner:'Vitor',status:'bloqueio',priority:'alta',due:'',type:'Sistema',description:'Padronizar nomenclatura e origem dos dados estaduais no fluxo de acompanhamento.',detail:'Padronizar UF, casa, link, proposição, ementa, estágio, impacto CFTA, responsável técnico e data de última checagem.'},
+    {id:uid(),title:'Habilitar notificações de tramitação',project:'Governor',owner:'Sistema',status:'desenvolvimento',priority:'urgente',due:'2026-06-20',type:'Sistema',description:'Prioridade operacional para automatizar alertas de movimentação dos projetos monitorados.',detail:'Após habilitar, manter conferência humana apenas para matérias sensíveis e projetos de maior risco institucional.'},
+    {id:uid(),title:'Incluir PL 6348/2019 e PL 3820/2021',project:'CFTA',owner:'Vitor',status:'desenvolvimento',priority:'urgente',due:'2026-06-18',type:'Legislativo',description:'Inserir os dois projetos na base prioritária, com classificação, ementa, comissão, estágio e recomendação.',detail:'Avaliar se entram como prioridade de acompanhamento, monitoramento seletivo ou referência normativa.'},
+    {id:uid(),title:'Corrigir filtro de novas proposições',project:'Governor',owner:'Sistema',status:'desenvolvimento',priority:'urgente',due:'2026-06-19',type:'Sistema',description:'Separar corretamente Câmara Federal, Senado Federal e Legislativo Estadual no painel de novas proposições.',detail:'Também corrigir abertura dos projetos estaduais dentro da aba de novas proposições.'},
+    {id:uid(),title:'Cruzamento legislação federal x estadual de agroindústria',project:'Agroindústria',owner:'Belli / Vitor',status:'desenvolvimento',priority:'urgente',due:'2026-06-21',type:'Pesquisa',description:'Produzir análise comparativa entre legislação federal e estadual de agroindústria para entrega rápida.',detail:'Comparar inspeção, sanidade, produtos artesanais, SUASA, agroindústria familiar, responsabilidade técnica e circulação interestadual.'},
+    {id:uid(),title:'Enviar/validar relatório de Maio',project:'Relatórios',owner:'Vitor',status:'desenvolvimento',priority:'alta',due:'2026-06-17',type:'Relatório',description:'O relatório de maio já existe, mas precisa ser tratado como entrega final de envio/validação.',detail:'Conferir apresentação, resumo executivo, atividades, projetos acompanhados, articulação política, próximos passos e conclusão.'},
+    {id:uid(),title:'Relatório semestral de atividades',project:'Relatórios',owner:'Belli / Vitor',status:'desenvolvimento',priority:'alta',due:'2026-06-30',type:'Relatório',description:'Criar relatório consolidado do semestre com todas as atividades, entregas, articulações e resultados.',detail:'Estrutura sugerida: resumo executivo, linha do tempo, entregas por mês, projetos acompanhados, gargalos operacionais, indicadores e próximos passos.'},
+    {"id": "act-cons-ccp", "title": "Semana: destravar projetos parados na CCP", "project": "Congresso", "owner": "Ana Paula / Vitor", "status": "desenvolvimento", "priority": "urgente", "due": "2026-06-19", "type": "Legislativo", "description": "Ir à Coordenação de Comissões Permanentes para solicitar distribuição dos projetos retidos às comissões competentes.", "detail": "Projetos citados: PL 4074/2021, PL 2477/2023, PL 2925/2025, PL 4681/2023, PL 4257/2025, PL 4158/2025 e PL 4805/2024."},
+    {"id": "act-pl-3692", "title": "Prioridade 1: PL 3692/2025 com Tião Medeiros", "project": "Congresso", "owner": "Ana Paula", "status": "andamento", "priority": "urgente", "due": "2026-06-19", "type": "Legislativo", "description": "Contatar gabinete do relator Dep. Tião Medeiros e verificar andamento do parecer.", "detail": "Contato citado com Janeide e assessor legislativo Marcos Lengruber para agendar reunião e alinhar apresentação do relatório."},
+    {"id": "act-plp-125", "title": "Prioridade 2: PLP 125/2023 e Reforma Tributária", "project": "Congresso", "owner": "Ana Paula / CFTA", "status": "desenvolvimento", "priority": "urgente", "due": "2026-06-19", "type": "Legislativo", "description": "Confirmar com o CFTA se ainda há interesse no PLP 125/2023 após a Reforma Tributária.", "detail": "Depois da decisão, procurar gabinetes de Josivaldo e Rogéria Santos para sondar relatoria. Contatos: Marco Lengruber e Patrícia Vanduline."},
+    {"id": "act-relatores-cft", "title": "Buscar relatores na CFT para PL 3291/2019 e PL 1531/2023", "project": "Congresso", "owner": "Ana Paula", "status": "desenvolvimento", "priority": "alta", "due": "2026-06-20", "type": "Legislativo", "description": "Usar lista de membros da CFT para buscar relatores dos projetos recém-recebidos/pendentes.", "detail": "PL 3291/2019: recuperação ambiental dos rios maranhenses. PL 1531/2023: isenção de anuidade para doentes graves."},
+    {"id": "act-relatores-ccjc", "title": "Buscar relatorias na CCJC e reuniões com relatores", "project": "Congresso", "owner": "Ana Paula", "status": "desenvolvimento", "priority": "alta", "due": "2026-06-20", "type": "Legislativo", "description": "Organizar ofensiva na CCJC para projetos prontos, aguardando relator ou com relator designado.", "detail": "PL 1367/2022: reunião com José Rocha; PL 2190/2023: novo relator; PL 5269/2019: relator e apensados; PL 2782/2019: designação; PL 8407/2017: Hugo Leal."},
+    {"id": "act-assembleia-sp", "title": "Triagem da Assembleia de São Paulo", "project": "Assembleias Estaduais", "owner": "Vitor", "status": "desenvolvimento", "priority": "alta", "due": "2026-06-20", "type": "Pesquisa", "description": "Analisar projetos da Assembleia de São Paulo e manter apenas matérias de real relevância para o CFTA.", "detail": "Excluir requerimentos, nomes de rua/ponte, audiências públicas, datas comemorativas e pedidos de informação. Manter apenas projetos que criam lei e tenham aderência institucional."}
+  ],
+  projects:[
+    {
+        "id": "proj-pl-1367-2022",
+        "code": "PL 1367/2022",
+        "theme": "Controle integrado de vetores e pragas urbanas",
+        "situation": "Aguardando parecer do relator",
+        "commission": "CCJC",
+        "action": "Atuar junto ao relator Dep. José Rocha para pautação e agendar reunião para receber o presidente Mário.",
+        "priority": "alta",
+        "stage": "Aguardando parecer",
+        "owner": "Ana Paula / Congresso",
+        "done": "Projeto identificado e relator designado.",
+        "next": "Agendar conversa com o Dep. José Rocha e alinhar relatório favorável.",
+        "notes": "Consta como demanda de atuação direta na CCJC."
+    },
+    {
+        "id": "proj-pl-2190-2023",
+        "code": "PL 2190/2023",
+        "theme": "Comercialização de sementes e mudas crioulas",
+        "situation": "Aguardando designação de relator",
+        "commission": "CCJC",
+        "action": "Buscar nova relatoria e retomar tramitação.",
+        "priority": "alta",
+        "stage": "Aguardando relator",
+        "owner": "Ana Paula / Congresso",
+        "done": "Relator anterior devolveu a matéria.",
+        "next": "Mapear membros da CCJC e buscar gabinete para assumir relatoria.",
+        "notes": "Projeto listado como central na agenda da CCJC."
+    },
+    {
+        "id": "proj-pl-3584-2015",
+        "code": "PL 3584/2015",
+        "theme": "Política Nacional de Incentivo às Agroindústrias",
+        "situation": "Pronta para pauta",
+        "commission": "CCJC",
+        "action": "Trabalhar para pautar parecer e acompanhar relatoria.",
+        "priority": "urgente",
+        "stage": "Pronta para pauta",
+        "owner": "Ana Paula / Vitor",
+        "done": "Projeto acompanhado no relatório de maio e na agenda de agroindústria.",
+        "next": "Atuar pela inclusão em pauta e monitorar movimentação do relator Pedro Lupion.",
+        "notes": "Um dos projetos mais próximos de avanço."
+    },
+    {
+        "id": "proj-pl-1905-2023",
+        "code": "PL 1905/2023",
+        "theme": "Reurb e georreferenciamento com CFT",
+        "situation": "Senado Federal",
+        "commission": "Senado",
+        "action": "Monitorar distribuição e relatoria.",
+        "priority": "media",
+        "stage": "Senado Federal",
+        "owner": "Ana Paula",
+        "done": "Incluído no radar de acompanhamento.",
+        "next": "Verificar distribuição e relatoria no Senado.",
+        "notes": "Acompanhar conexão com regularização fundiária e georreferenciamento."
+    },
+    {
+        "id": "proj-pl-4110-2024",
+        "code": "PL 4110/2024",
+        "theme": "Responsabilidade técnica para registro e parcelamento de terras",
+        "situation": "Pronta para pauta",
+        "commission": "CCJC",
+        "action": "Trabalhar pela inclusão em pauta.",
+        "priority": "urgente",
+        "stage": "Pronta para pauta",
+        "owner": "Ana Paula / Congresso",
+        "done": "Acompanhamento prioritário já registrado nos relatórios de março e maio; houve atuação com gabinete de Gisela Simona.",
+        "next": "Pressionar inclusão em pauta e manter diálogo com CCJC.",
+        "notes": "Um dos projetos mais estratégicos para atuação imediata."
+    },
+    {
+        "id": "proj-pl-2283-2021",
+        "code": "PL 2283/2021",
+        "theme": "Avaliação de imóveis públicos federais",
+        "situation": "Pronta para pauta",
+        "commission": "CASP",
+        "action": "Trabalhar pela inclusão em pauta.",
+        "priority": "urgente",
+        "stage": "Pronta para pauta",
+        "owner": "Ana Paula",
+        "done": "Projeto mapeado como central para laudos, registros e atos administrativos.",
+        "next": "Articular com CASP para inclusão em pauta.",
+        "notes": "Projeto próximo de avanço."
+    },
+    {
+        "id": "proj-pl-4239-2024",
+        "code": "PL 4239/2024",
+        "theme": "Abrigos de cães e gatos",
+        "situation": "Aguardando parecer",
+        "commission": "CMADS",
+        "action": "Acompanhar elaboração do parecer.",
+        "priority": "media",
+        "stage": "Aguardando parecer",
+        "owner": "Ana Paula",
+        "done": "Incluído na base de acompanhamento.",
+        "next": "Monitorar parecer e aderência à pauta profissional.",
+        "notes": "Monitoramento seletivo."
+    },
+    {
+        "id": "proj-pl-4681-2023",
+        "code": "PL 4681/2023",
+        "theme": "Destinação de animais mortos",
+        "situation": "Tramitação conjunta",
+        "commission": "CCP",
+        "action": "Acompanhar tramitação e relatoria.",
+        "priority": "alta",
+        "stage": "Na CCP",
+        "owner": "Ana Paula / Congresso",
+        "done": "Identificado como projeto retido/pendente de distribuição na Coordenação de Comissões Permanentes.",
+        "next": "Cobrar encaminhamento para comissão competente.",
+        "notes": "Entrar na lista de conferência junto à CCP."
+    },
+    {
+        "id": "proj-pl-4257-2025",
+        "code": "PL 4257/2025",
+        "theme": "Combate ao racismo nos conselhos profissionais",
+        "situation": "Aguardando relator",
+        "commission": "CCP",
+        "action": "Atuar pela designação de relator.",
+        "priority": "alta",
+        "stage": "Na CCP",
+        "owner": "Ana Paula / Congresso",
+        "done": "Projeto localizado na CCP.",
+        "next": "Pedir distribuição à comissão competente e buscar relator.",
+        "notes": "Mencionado no áudio como pendente na CCP."
+    },
+    {
+        "id": "proj-pl-4013-2025",
+        "code": "PL 4013/2025",
+        "theme": "Remuneração técnica Engenharia/Agronomia",
+        "situation": "Aguardando relator",
+        "commission": "CTRAB",
+        "action": "Atuar pela designação de relator.",
+        "priority": "alta",
+        "stage": "Aguardando relator",
+        "owner": "Ana Paula",
+        "done": "Inserido na pauta da CTRAB como tema de valorização profissional e conselhos.",
+        "next": "Mapear relator na CTRAB e avaliar risco corporativo.",
+        "notes": "Conecta com estratégia de proteção da arquitetura institucional dos conselhos."
+    },
+    {
+        "id": "proj-pl-4012-2025",
+        "code": "PL 4012/2025",
+        "theme": "Seguro de Responsabilidade Técnica (SRT-ART)",
+        "situation": "Aguardando relator",
+        "commission": "CTRAB",
+        "action": "Atuar pela designação de relator.",
+        "priority": "alta",
+        "stage": "Aguardando relator",
+        "owner": "Ana Paula",
+        "done": "Inserido na pauta de valorização profissional.",
+        "next": "Buscar relator e acompanhar narrativa sobre responsabilidade técnica.",
+        "notes": "Atenção a efeitos sobre conselhos profissionais."
+    },
+    {
+        "id": "proj-pl-3979-2019",
+        "code": "PL 3979/2019",
+        "theme": "Conselhos de Classes de Profissões Regulamentadas",
+        "situation": "Nova relatoria necessária",
+        "commission": "CTRAB",
+        "action": "Buscar novo relator.",
+        "priority": "alta",
+        "stage": "Nova relatoria",
+        "owner": "Ana Paula",
+        "done": "Projeto identificado como central na CTRAB.",
+        "next": "Buscar relatoria e manter defesa institucional.",
+        "notes": "Tema sensível para conselhos profissionais."
+    },
+    {
+        "id": "proj-pl-2782-2019",
+        "code": "PL 2782/2019",
+        "theme": "Técnicos agrícolas no Minha Casa Minha Vida",
+        "situation": "Aguardando relator",
+        "commission": "CCJC",
+        "action": "Atuar pela designação.",
+        "priority": "alta",
+        "stage": "Aguardando relator",
+        "owner": "Ana Paula / Vitor",
+        "done": "Aprovado recentemente e encaminhado à CCJC; houve informe de tramitação.",
+        "next": "Buscar relator na CCJC.",
+        "notes": "Projeto com aderência direta à atuação profissional em habitação rural."
+    },
+    {
+        "id": "proj-pl-4158-2025",
+        "code": "PL 4158/2025",
+        "theme": "Regulamentação da atividade de arborista",
+        "situation": "Aguardando relator",
+        "commission": "CCP",
+        "action": "Atuar pela designação.",
+        "priority": "alta",
+        "stage": "Na CCP",
+        "owner": "Ana Paula / Congresso",
+        "done": "Projeto localizado na CCP.",
+        "next": "Cobrar distribuição e buscar relator.",
+        "notes": "Mencionado no áudio como pendente na CCP."
+    },
+    {
+        "id": "proj-pl-1942-2022",
+        "code": "PL 1942/2022",
+        "theme": "Titulação de terras quilombolas",
+        "situation": "Aguardando parecer",
+        "commission": "Mesa Diretora",
+        "action": "Acompanhar parecer.",
+        "priority": "media",
+        "stage": "Aguardando parecer",
+        "owner": "Ana Paula",
+        "done": "Cadastrado na base de acompanhamento.",
+        "next": "Monitorar movimentação e impacto institucional.",
+        "notes": "Monitoramento."
+    },
+    {
+        "id": "proj-pl-6348-2019",
+        "code": "PL 6348/2019",
+        "theme": "Cachaça Artesanal",
+        "situation": "Aguardando parecer",
+        "commission": "CICS",
+        "action": "Acompanhar elaboração do parecer.",
+        "priority": "alta",
+        "stage": "Aguardando parecer",
+        "owner": "Vitor / Ana Paula",
+        "done": "Demanda de inclusão priorizada pelo CFTA.",
+        "next": "Cadastrar na base prioritária, avaliar impacto em agroindústria/cachaça artesanal e monitorar parecer.",
+        "notes": "Incluído a partir da demanda prioritária do usuário."
+    },
+    {
+        "id": "proj-pl-4993-2024",
+        "code": "PL 4993/2024",
+        "theme": "Política Nacional de Segurança de Barragens",
+        "situation": "Pronta para pauta",
+        "commission": "CMADS",
+        "action": "Trabalhar pela inclusão em pauta.",
+        "priority": "urgente",
+        "stage": "Pronta para pauta",
+        "owner": "Ana Paula",
+        "done": "Projeto indicado entre os mais próximos de avanço.",
+        "next": "Atuar pela inclusão em pauta e avaliar narrativa técnica.",
+        "notes": "Pronto para pauta; atuação imediata."
+    },
+    {
+        "id": "proj-pl-4805-2024",
+        "code": "PL 4805/2024",
+        "theme": "Destinação de 1% do ITR para qualificação profissional",
+        "situation": "Aguardando relator",
+        "commission": "CCP",
+        "action": "Atuar pela designação.",
+        "priority": "alta",
+        "stage": "Na CCP",
+        "owner": "Ana Paula / Congresso",
+        "done": "Projeto identificado no eixo ITR/qualificação profissional.",
+        "next": "Cobrar distribuição pela CCP e buscar relator.",
+        "notes": "Mencionado como pendente na CCP."
+    },
+    {
+        "id": "proj-pl-1822-2025",
+        "code": "PL 1822/2025",
+        "theme": "Segurança na aplicação aeroagrícola por drones",
+        "situation": "Aguardando parecer",
+        "commission": "CVT",
+        "action": "Acompanhar parecer.",
+        "priority": "alta",
+        "stage": "Aguardando parecer",
+        "owner": "Ana Paula",
+        "done": "Acompanhado nos relatórios como matéria relevante.",
+        "next": "Monitorar parecer e conexão com segurança na aplicação por drones.",
+        "notes": "Impacto em tecnologia rural e segurança operacional."
+    },
+    {
+        "id": "proj-pl-6093-2023",
+        "code": "PL 6093/2023",
+        "theme": "Demarcação de terras indígenas",
+        "situation": "Aguardando parecer",
+        "commission": "CPOVOS",
+        "action": "Acompanhar parecer.",
+        "priority": "media",
+        "stage": "Aguardando parecer",
+        "owner": "Ana Paula",
+        "done": "Cadastrado na base de acompanhamento.",
+        "next": "Monitorar parecer e impacto territorial.",
+        "notes": "Monitoramento seletivo."
+    },
+    {
+        "id": "proj-pl-225-2024",
+        "code": "PL 225/2024",
+        "theme": "Produção familiar de cachaça e aguardente",
+        "situation": "Aguardando parecer",
+        "commission": "CDC",
+        "action": "Acompanhar parecer.",
+        "priority": "alta",
+        "stage": "Aguardando parecer",
+        "owner": "Vitor / Ana Paula",
+        "done": "Matéria vinculada ao eixo agroindústria/cachaça.",
+        "next": "Monitorar parecer e comparar com PL 6348/2019.",
+        "notes": "Pode compor cruzamento de agroindústria artesanal."
+    },
+    {
+        "id": "proj-pl-4444-2021",
+        "code": "PL 4444/2021",
+        "theme": "Gestão eficiente do patrimônio imobiliário federal",
+        "situation": "Aguardando deliberação",
+        "commission": "Plenário",
+        "action": "Monitorar inclusão em pauta.",
+        "priority": "media",
+        "stage": "Aguardando deliberação",
+        "owner": "Ana Paula",
+        "done": "Cadastrado no radar de CASP/Plenário.",
+        "next": "Monitorar pauta do Plenário.",
+        "notes": "Relaciona-se a gestão imobiliária pública."
+    },
+    {
+        "id": "proj-pl-3291-2019",
+        "code": "PL 3291/2019",
+        "theme": "Recuperação ambiental dos rios maranhenses",
+        "situation": "Aguardando relator",
+        "commission": "CFT",
+        "action": "Atuar pela designação.",
+        "priority": "alta",
+        "stage": "Aguardando relator",
+        "owner": "Ana Paula / Congresso",
+        "done": "Recebido na CFT; lista de membros será usada para buscar relator.",
+        "next": "Mapear membros da CFT e bater nos gabinetes em busca de relator.",
+        "notes": "Mencionado como demanda urgente da semana."
+    },
+    {
+        "id": "proj-pl-3820-2021",
+        "code": "PL 3820/2021",
+        "theme": "Livro dos Heróis da Pandemia",
+        "situation": "Pronta para pauta",
+        "commission": "CCP",
+        "action": "Trabalhar pela inclusão em pauta.",
+        "priority": "urgente",
+        "stage": "Pronta para pauta",
+        "owner": "Vitor / Ana Paula",
+        "done": "Demanda prioritária de inclusão cadastrada.",
+        "next": "Incluir na base prioritária e trabalhar inclusão em pauta.",
+        "notes": "Projeto pronto para pauta."
+    },
+    {
+        "id": "proj-pl-1531-2023",
+        "code": "PL 1531/2023",
+        "theme": "Isenção de anuidade para doentes graves",
+        "situation": "Aguardando relator",
+        "commission": "CFT",
+        "action": "Atuar pela designação.",
+        "priority": "alta",
+        "stage": "Aguardando relator",
+        "owner": "Ana Paula / Congresso",
+        "done": "Matéria está na CFT aguardando relator.",
+        "next": "Buscar relator na CFT com base na lista de membros.",
+        "notes": "Mencionado no áudio como demanda da semana."
+    },
+    {
+        "id": "proj-pl-5407-2025",
+        "code": "PL 5407/2025",
+        "theme": "Reaproveitamento de rejeitos da mineração",
+        "situation": "Tramitação conjunta",
+        "commission": "CME",
+        "action": "Acompanhar tramitação.",
+        "priority": "media",
+        "stage": "Tramitação conjunta",
+        "owner": "Ana Paula",
+        "done": "Cadastrado na base de acompanhamento.",
+        "next": "Monitorar tramitação conjunta e possível impacto ambiental/produtivo.",
+        "notes": "Monitoramento."
+    },
+    {
+        "id": "proj-pl-4074-2021",
+        "code": "PL 4074/2021",
+        "theme": "Agricultura urbana em programas habitacionais",
+        "situation": "Aguardando relator",
+        "commission": "CCP",
+        "action": "Atuar pela designação.",
+        "priority": "alta",
+        "stage": "Na CCP",
+        "owner": "Ana Paula / Congresso",
+        "done": "Projeto localizado como parado na CCP.",
+        "next": "Cobrar distribuição para a comissão e buscar relatoria.",
+        "notes": "Mencionado no áudio como projeto na CCP."
+    },
+    {
+        "id": "proj-pl-5269-2019",
+        "code": "PL 5269/2019",
+        "theme": "Usucapião extrajudicial",
+        "situation": "Aguardando relator",
+        "commission": "CCJC",
+        "action": "Atuar pela designação e acompanhar apensados.",
+        "priority": "alta",
+        "stage": "Aguardando relator",
+        "owner": "Ana Paula / Congresso",
+        "done": "Identificado como projeto na CCJC com apensados.",
+        "next": "Buscar relator e mapear apensados relevantes.",
+        "notes": "Demanda de porta em porta na CCJC."
+    },
+    {
+        "id": "proj-pl-2477-2023",
+        "code": "PL 2477/2023",
+        "theme": "Conceito de nascente e APP",
+        "situation": "Aguardando relator",
+        "commission": "CCP",
+        "action": "Atuar pela designação.",
+        "priority": "alta",
+        "stage": "Na CCP",
+        "owner": "Ana Paula / Congresso",
+        "done": "Projeto localizado como retido na CCP.",
+        "next": "Cobrar distribuição e buscar relator.",
+        "notes": "Tema ambiental sensível para contenção qualificada."
+    },
+    {
+        "id": "proj-pl-2925-2025",
+        "code": "PL 2925/2025",
+        "theme": "Agrônomos, veterinários e zootecnistas no Pronater",
+        "situation": "Aguardando relator",
+        "commission": "CCP",
+        "action": "Atuar pela designação.",
+        "priority": "urgente",
+        "stage": "Na CCP",
+        "owner": "Ana Paula / Congresso",
+        "done": "Identificado como ponto de atenção por risco de excluir técnicos agrícolas.",
+        "next": "Cobrar distribuição e preparar narrativa para inclusão dos técnicos agrícolas.",
+        "notes": "Risco corporativo; precisa de atenção."
+    },
+    {
+        "id": "proj-pl-8407-2017",
+        "code": "PL 8407/2017",
+        "theme": "Exercício da profissão de médico-veterinário",
+        "situation": "Aguardando parecer",
+        "commission": "CCJC / Plenário",
+        "action": "Atuar junto ao relator Hugo Leal.",
+        "priority": "alta",
+        "stage": "Com relator",
+        "owner": "Ana Paula / Congresso",
+        "done": "Relator Hugo Leal já designado.",
+        "next": "Procurar o relator e apresentar relatório/posição técnica.",
+        "notes": "Mencionado no áudio como demanda urgente."
+    },
+    {
+        "id": "proj-pl-4187-2025",
+        "code": "PL 4187/2025",
+        "theme": "Sistema Nacional de Sementes e Mudas",
+        "situation": "Aguardando parecer",
+        "commission": "CMADS",
+        "action": "Atuar junto ao relator Coronel Chrisóstomo.",
+        "priority": "alta",
+        "stage": "Aguardando parecer",
+        "owner": "Ana Paula",
+        "done": "Projeto acompanhado nas bases de pauta e relatórios.",
+        "next": "Atuar junto ao relator Coronel Chrisóstomo e monitorar parecer.",
+        "notes": "Tema estratégico para sementes e mudas."
+    },
+    {
+        "id": "proj-pl-1024-2020",
+        "code": "PL 1024/2020",
+        "theme": "Exercício das profissões de engenheiro e agrônomo",
+        "situation": "Senado Federal",
+        "commission": "Senado",
+        "action": "Monitorar distribuição e relatoria.",
+        "priority": "media",
+        "stage": "Senado Federal",
+        "owner": "Ana Paula",
+        "done": "Acompanhado como matéria estratégica.",
+        "next": "Monitorar distribuição e relatoria no Senado.",
+        "notes": "Tema de fronteira profissional."
+    },
+    {
+        "id": "proj-pl-3692-2025",
+        "code": "PL 3692/2025",
+        "theme": "Saúde dos trabalhadores rurais e agrotóxicos",
+        "situation": "Aguardando parecer",
+        "commission": "CAPADR",
+        "action": "Acompanhar parecer e contatar gabinete do relator Dep. Tião Medeiros.",
+        "priority": "urgente",
+        "stage": "Com relator",
+        "owner": "Ana Paula / Congresso",
+        "done": "Tião Medeiros está como relator; contato iniciado com Janeide e Marcos Lengruber.",
+        "next": "Agendar reunião para tratar do relatório e verificar data de apresentação do parecer.",
+        "notes": "Prioridade 1 nas anotações."
+    },
+    {
+        "id": "proj-plp-125-2023",
+        "code": "PLP 125/2023",
+        "theme": "Alteração do Simples Nacional",
+        "situation": "Nova relatoria necessária",
+        "commission": "CPASF",
+        "action": "Buscar novo relator e retomar tramitação após confirmação de viabilidade pós-Reforma Tributária.",
+        "priority": "urgente",
+        "stage": "Nova relatoria",
+        "owner": "Ana Paula / CFTA",
+        "done": "Foram citados Josivaldo e Rogéria Santos como possíveis relatores; contatos: Marco Lengruber e Patrícia Vanduline.",
+        "next": "Confirmar com o CFTA se há interesse em manter a matéria; visitar gabinetes de Josivaldo e Rogéria Santos.",
+        "notes": "Prioridade 2 nas anotações; precisa decisão estratégica do CFTA."
+    }
+],
+  congressActions:[
+    {
+        "id": "cons-ccp-distribuicao",
+        "title": "Ir à Coordenação de Comissões Permanentes da Câmara",
+        "category": "CCP / Distribuição",
+        "status": "pendente",
+        "priority": "urgente",
+        "owner": "Ana Paula / Vitor",
+        "detail": "Relacionar projetos parados na CCP e solicitar encaminhamento físico/processual para as comissões competentes, especialmente CCJC, CFT, CTRAB e demais colegiados."
+    },
+    {
+        "id": "cons-pl-3692",
+        "title": "PL 3692/2025 — reunião com relator Tião Medeiros",
+        "category": "CAPADR",
+        "status": "andamento",
+        "priority": "urgente",
+        "owner": "Ana Paula",
+        "detail": "Contatar gabinete, Janeide e Marcos Lengruber para agendar reunião, discutir relatório e verificar prazo de apresentação do parecer."
+    },
+    {
+        "id": "cons-plp-125",
+        "title": "PLP 125/2023 — confirmar interesse do CFTA e buscar relator",
+        "category": "CPASF",
+        "status": "pendente",
+        "priority": "urgente",
+        "owner": "Ana Paula / CFTA",
+        "detail": "Checar viabilidade após a Reforma Tributária; conversar com gabinetes de Josivaldo e Rogéria Santos; registrar contatos Marco Lengruber e Patrícia Vanduline."
+    },
+    {
+        "id": "cons-cft-relatorias",
+        "title": "Buscar relatores na CFT",
+        "category": "CFT",
+        "status": "pendente",
+        "priority": "alta",
+        "owner": "Ana Paula",
+        "detail": "Priorizar PL 3291/2019 e PL 1531/2023, usando lista de membros da CFT e abordagem gabinete por gabinete."
+    },
+    {
+        "id": "cons-ccjc-relatorias",
+        "title": "Buscar relatores e reuniões na CCJC",
+        "category": "CCJC",
+        "status": "pendente",
+        "priority": "alta",
+        "owner": "Ana Paula",
+        "detail": "Acompanhar PL 1367/2022 com José Rocha; buscar relator para PL 2190/2023, PL 5269/2019 e PL 2782/2019; manter PL 4110/2024 na pauta."
+    },
+    {
+        "id": "cons-hugo-leal",
+        "title": "PL 8407/2017 — procurar relator Hugo Leal",
+        "category": "CCJC / Plenário",
+        "status": "pendente",
+        "priority": "alta",
+        "owner": "Ana Paula",
+        "detail": "Apresentar relatório técnico, explicar posição do CFTA e monitorar parecer."
+    },
+    {
+        "id": "cons-sp-assembleia",
+        "title": "Assembleia de São Paulo — triagem de projetos relevantes",
+        "category": "Assembleias Estaduais",
+        "status": "pendente",
+        "priority": "alta",
+        "owner": "Vitor",
+        "detail": "Analisar projeto por projeto; manter apenas projetos que criam lei com relevância real. Excluir requerimentos, nomes de rua/ponte, audiência pública, datas comemorativas e pedidos de informação."
+    },
+    {
+        "id": "cons-relatorio-semanal",
+        "title": "Relatório semanal da consultoria no Congresso",
+        "category": "Relatório semanal",
+        "status": "andamento",
+        "priority": "fixa",
+        "owner": "Vitor / Ana Paula",
+        "detail": "Registrar reuniões, gabinetes visitados, relatorias buscadas, projetos destravados, bloqueios e próximos passos."
+    },
+    {
+        "id": "cons-mapa",
+        "title": "Acompanhamento institucional no MAPA/SDA",
+        "category": "Executivo Federal",
+        "status": "realizado",
+        "priority": "alta",
+        "owner": "Ana Paula",
+        "detail": "Atuação já registrada nos relatórios: defesa agropecuária, pesticidas, bioinsumos e Decreto nº 12.858/2026/IN MAPA nº 29/2011."
+    },
+    {
+        "id": "cons-bases-maio",
+        "title": "Organização de bases legislativas de maio",
+        "category": "Base de dados",
+        "status": "realizado",
+        "priority": "alta",
+        "owner": "Belli / Vitor",
+        "detail": "Triagem de projetos estaduais, matérias novas, agroindústria e proposições de alta relevância para o CFTA."
+    }
+],
+  files:[
+    {id:uid(),name:'Relatórios mensais — Março e Maio 2026',category:'Relatório',project:'CFTA',link:'',size:'',notes:'Atividades desenvolvidas, projetos acompanhados, próximos passos e síntese executiva.',created:today()},
+    {id:uid(),name:'Agenda Legislativa da Agroindústria',category:'Relatório',project:'Agroindústria',link:'',size:'',notes:'Sinopse e planilhas consolidadas de projetos de maior aderência ao CFTA.',created:today()},
+    {id:uid(),name:'Mapeamento político e comissões',category:'Legislação',project:'Belli',link:'',size:'',notes:'Perfil de comissões, lideranças influentes e projetos centrais por comissão.',created:today()},
+    {id:uid(),name:'Painel — Fumo em folha seca por UF',category:'Pesquisa',project:'Pesquisas',link:'https://camapum.github.io/mapas-fumo/',size:'Link externo',notes:'Painel autônomo com indicadores, gráficos e mapas por UF.',created:today()},
+    {id:uid(),name:'Painel — Déficit Técnico',category:'Pesquisa',project:'Pesquisas',link:'https://camapum.github.io/mapas-deficit-tecnico/',size:'Link externo',notes:'Painel de produção agropecuária, densidade técnica e déficit técnico.',created:today()}
+  ],
+  researches:[
+    {id:uid(),title:'Painel — Fumo em folha seca por UF',category:'Dashboard',link:'https://camapum.github.io/mapas-fumo/',description:'Painel autônomo com produção nacional, área colhida, estabelecimentos com fumo, concentração regional, gráficos e mapas por UF.',metrics:['Produção nacional','Área colhida','Estabelecimentos']},
+    {id:uid(),title:'Painel Interativo — Déficit Técnico',category:'Mapa interativo',link:'https://camapum.github.io/mapas-deficit-tecnico/',description:'Capítulo interativo com mapas de Produção (VPA), Densidade Técnica e Déficit Técnico (P5), voltado a diagnóstico territorial e priorização.',metrics:['VPA','Densidade','Déficit P5']},
+    {id:uid(),title:'Cruzamento Federal × Estadual — Agroindústria',category:'Diagnóstico territorial',link:'#',description:'Espaço reservado para o estudo comparativo de legislação federal e estadual de agroindústria, inspeção, sanidade, SUASA e responsabilidade técnica.',metrics:['Federal','Estadual','RT']},
+    {id:uid(),title:'Radar Legislativo CFTA',category:'Dashboard',link:'#',description:'Painel futuro para acompanhar proposições prioritárias, relatores, comissões, tramitação, risco institucional e recomendação de ação.',metrics:['Projetos','Comissões','Risco']}
+  ]
+};
+let data = loadData();
+let currentDate = new Date();
+let detailsOpen = false;
+
+function uid(){return 'id-'+Math.random().toString(36).slice(2,10)+'-'+Date.now().toString(36)}
+function today(){return new Date().toISOString().slice(0,10)}
+function loadData(){
+  let loaded;
+  try{const raw = localStorage.getItem(STORAGE_KEY);loaded = raw?JSON.parse(raw):structuredClone(initialData)}
+  catch(e){loaded = structuredClone(initialData)}
+  return migrateData(loaded);
+}
+function migrateData(d){
+  d = d || structuredClone(initialData);
+  d.activities = mergeSeeds(d.activities || [], initialData.activities || [], 'title');
+  d.files = mergeSeeds(d.files || [], initialData.files || [], 'name');
+  d.researches = mergeSeeds(d.researches || [], initialData.researches || [], 'title');
+  d.projects = mergeSeeds(d.projects || [], initialData.projects || [], 'code');
+  d.congressActions = mergeSeeds(d.congressActions || [], initialData.congressActions || [], 'title');
+  return d;
+}
+function mergeSeeds(current, seeds, key){
+  const existing = new Set((current || []).map(item => normalize(item[key] || item.title || item.code || item.id)));
+  (seeds || []).forEach(seed => {
+    const val = normalize(seed[key] || seed.title || seed.code || seed.id);
+    if(!existing.has(val)){current.push(structuredClone(seed));existing.add(val)}
+  });
+  return current;
+}
+function saveData(){localStorage.setItem(STORAGE_KEY, JSON.stringify(data))}
+function normalize(str){return (str||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function openTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'});renderAll()}
+function clearFilters(){['search','statusFilter','priorityFilter'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});renderAll()}
+function setQuickFilter(status){openTab('kanban');setTimeout(()=>{document.getElementById('statusFilter').value=status;renderAll()},80)}
+function toggleDetails(){detailsOpen=!detailsOpen;renderBoard()}
+function filteredActivities(){
+  const q=normalize(document.getElementById('search')?.value||'');
+  const status=document.getElementById('statusFilter')?.value||'';
+  const priority=document.getElementById('priorityFilter')?.value||'';
+  return data.activities.filter(a=>{
+    const okQ=!q||normalize(Object.values(a).join(' ')).includes(q);
+    const okS=!status||a.status===status;
+    const okP=!priority||a.priority===priority;
+    return okQ&&okS&&okP;
+  });
+}
+function renderAll(){renderMetrics();renderBars();renderBoard();renderCftaProjects();renderCongressConsulting();renderCalendar();renderActivityTable();renderFiles();renderReports();renderResearches();}
+function renderMetrics(){
+  const total=data.activities.length;
+  const done=countBy('status','realizado');
+  const blockers=countBy('status','bloqueio');
+  const urgent=data.activities.filter(a=>a.priority==='urgente').length;
+  const dueSoon=data.activities.filter(a=>a.due && daysFromNow(a.due)<=7 && daysFromNow(a.due)>=0 && a.status!=='realizado').length;
+  document.getElementById('navTotal').textContent=total;
+  document.getElementById('navBlocked').textContent=blockers;
+  document.getElementById('metrics').innerHTML = `
+    <div class="metric"><b>${total}</b><span>Atividades totais</span><em>${data.files.length} arquivos e ${data.researches.length} pesquisas cadastradas.</em></div>
+    <div class="metric blue"><b>${countBy('status','andamento')}</b><span>Em andamento</span><em>Rotinas, bases e relatórios em execução.</em></div>
+    <div class="metric red"><b>${blockers}</b><span>Bloqueios</span><em>Itens que travam operação, dados ou sistema.</em></div>
+    <div class="metric orange"><b>${dueSoon}</b><span>Próximos 7 dias</span><em>${urgent} demandas urgentes no total.</em></div>`;
+}
+function countBy(key,val){return data.activities.filter(a=>a[key]===val).length}
+function daysFromNow(dateStr){const d=new Date(dateStr+'T12:00:00');const n=new Date();n.setHours(12,0,0,0);return Math.round((d-n)/(1000*60*60*24))}
+function groupCounts(arr,key){return arr.reduce((acc,item)=>{const k=item[key]||'Sem informação';acc[k]=(acc[k]||0)+1;return acc},{})}
+function renderBars(){
+  renderBarList('projectBars', groupCounts(data.activities,'project'));
+  renderBarList('priorityBars', groupCounts(data.activities,'priority'));
+  const upcoming=[...data.activities].filter(a=>a.status!=='realizado').sort((a,b)=>sortDate(a.due)-sortDate(b.due)).slice(0,6);
+  document.getElementById('nextTasks').innerHTML = upcoming.length? upcoming.map(a=>`<div class="list-item"><strong>${escapeHtml(a.title)}</strong><p>${a.due?formatDate(a.due):'Sem prazo formal'} • ${statusLabel(a.status)} • ${priorityLabel(a.priority)}<br>${escapeHtml(a.description||'')}</p></div>`).join(''):'<div class="empty">Sem próximas entregas cadastradas.</div>';
+  const blockers=data.activities.filter(a=>a.status==='bloqueio').slice(0,6);
+  document.getElementById('blockers').innerHTML = blockers.length? blockers.map(a=>`<div class="list-item"><strong>${escapeHtml(a.title)}</strong><p>${priorityLabel(a.priority)} • ${escapeHtml(a.detail||a.description||'')}</p></div>`).join(''):'<div class="empty">Nenhum bloqueio cadastrado.</div>';
+}
+function renderBarList(id,counts){
+  const max=Math.max(1,...Object.values(counts));
+  const entries=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  document.getElementById(id).innerHTML=entries.length?entries.map(([k,v])=>`<div class="bar-row"><span>${escapeHtml(labelize(k))}</span><div class="bar"><i style="width:${Math.max(5,(v/max)*100)}%"></i></div><b>${v}</b></div>`).join(''):'<div class="empty">Sem dados.</div>';
+}
+function sortDate(d){return d?new Date(d+'T12:00:00').getTime():9999999999999}
+function renderBoard(){
+  const list=filteredActivities();
+  const board=document.getElementById('board');
+  if(!board)return;
+  board.innerHTML=Object.entries(statuses).map(([key,info])=>{
+    const items=list.filter(a=>a.status===key);
+    return `<div class="column"><div class="col-head"><div class="col-title"><span class="dot ${info.dot}"></span><h2>${info.label}</h2></div><span class="count">${items.length} ${items.length===1?'card':'cards'}</span></div>${items.map(cardHtml).join('')||'<div class="empty">Nenhuma atividade neste quadro.</div>'}</div>`
+  }).join('');
+}
+function cardHtml(a){return `<article class="card ${detailsOpen?'open':''}">
+  <h3 onclick="toggleCardOpen(this)">${escapeHtml(a.title)}</h3>
+  <p>${escapeHtml(a.description||'')}</p>
+  <div class="tags"><span class="tag ${a.priority}">${priorityLabel(a.priority)}</span><span class="tag">${escapeHtml(a.type||'Operacional')}</span></div>
+  <div class="meta"><div><b>Projeto</b><br/>${escapeHtml(a.project||'-')}</div><div><b>Prazo</b><br/>${a.due?formatDate(a.due):'Sem prazo formal'}</div><div><b>Responsável</b><br/>${escapeHtml(a.owner||'-')}</div><div><b>Status</b><br/>${statusLabel(a.status)}</div></div>
+  <div class="detail">${escapeHtml(a.detail||'Sem detalhamento adicional.')}</div>
+  <div class="card-actions"><select class="select-mini" onchange="moveActivity('${a.id}',this.value)">${Object.entries(statuses).map(([s,info])=>`<option value="${s}" ${a.status===s?'selected':''}>${info.label}</option>`).join('')}</select><button class="btn secondary small" onclick="editActivity('${a.id}')">Editar</button><button class="btn secondary small" onclick="duplicateActivity('${a.id}')">Duplicar</button></div>
+</article>`}
+function toggleCardOpen(el){el.closest('.card').classList.toggle('open')}
+function moveActivity(id,status){const a=data.activities.find(x=>x.id===id);if(a){a.status=status;saveData();renderAll();toast('Atividade movida.')}} 
+function editActivity(id){const a=data.activities.find(x=>x.id===id);if(!a)return;openTab('atividades');setTimeout(()=>{activityId.value=a.id;activityTitle.value=a.title;activityProject.value=a.project||'CFTA';activityOwner.value=a.owner||'';activityStatus.value=a.status;activityPriority.value=a.priority;activityDue.value=a.due||'';activityType.value=a.type||'Operacional';activityDescription.value=a.description||'';activityDetail.value=a.detail||'';activityTitle.focus()},80)}
+function duplicateActivity(id){const a=data.activities.find(x=>x.id===id);if(a){data.activities.unshift({...a,id:uid(),title:a.title+' (cópia)',status:'desenvolvimento'});saveData();renderAll();toast('Atividade duplicada.')}}
+function saveActivity(e){e.preventDefault();const obj={id:activityId.value||uid(),title:activityTitle.value.trim(),project:activityProject.value,owner:activityOwner.value.trim(),status:activityStatus.value,priority:activityPriority.value,due:activityDue.value,type:activityType.value,description:activityDescription.value.trim(),detail:activityDetail.value.trim()};const idx=data.activities.findIndex(a=>a.id===obj.id);if(idx>=0)data.activities[idx]=obj;else data.activities.unshift(obj);saveData();resetActivityForm();renderAll();toast('Atividade salva.');openTab('kanban')}
+function resetActivityForm(){document.getElementById('activityForm').reset();activityId.value=''}
+function renderActivityTable(){const el=document.getElementById('activityTable');if(!el)return;const rows=[...data.activities].map(a=>`<tr><td>${escapeHtml(a.title)}</td><td>${escapeHtml(a.project||'-')}</td><td>${statusLabel(a.status)}</td><td>${priorityLabel(a.priority)}</td><td>${a.due?formatDate(a.due):'Sem prazo'}</td><td>${escapeHtml(a.owner||'-')}</td><td><button class="btn secondary small" onclick="editActivity('${a.id}')">Editar</button> <button class="btn secondary small" onclick="deleteActivity('${a.id}')">Excluir</button></td></tr>`).join('');el.innerHTML=`<thead><tr><th>Atividade</th><th>Projeto</th><th>Status</th><th>Prioridade</th><th>Prazo</th><th>Responsável</th><th>Ações</th></tr></thead><tbody>${rows}</tbody>`}
+function deleteActivity(id){if(confirm('Excluir esta atividade?')){data.activities=data.activities.filter(a=>a.id!==id);saveData();renderAll();toast('Atividade excluída.')}}
+function renderCalendar(){const cal=document.getElementById('calendar');if(!cal)return;const year=currentDate.getFullYear();const month=currentDate.getMonth();const monthNames=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];document.getElementById('calendarTitle').textContent=`${monthNames[month]} ${year}`;const first=new Date(year,month,1);const start=new Date(first);start.setDate(start.getDate()-first.getDay());const todayObj=new Date();todayObj.setHours(0,0,0,0);let html=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'].map(d=>`<div class="day-name">${d}</div>`).join('');for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const iso=d.toISOString().slice(0,10);const evs=data.activities.filter(a=>a.due===iso);const cls=[d.getMonth()!==month?'muted':'', d.getTime()===todayObj.getTime()?'today':''].join(' ');html+=`<div class="day ${cls}"><div class="day-num">${d.getDate()}</div>${evs.slice(0,3).map(e=>`<div class="event-pill ${e.priority}" title="${escapeAttr(e.title)}">${escapeHtml(e.title)}</div>`).join('')}${evs.length>3?`<div class="event-pill">+${evs.length-3}</div>`:''}</div>`}cal.innerHTML=html}
+function changeMonth(n){currentDate.setMonth(currentDate.getMonth()+n);renderCalendar()}
+function saveFile(e){e.preventDefault();const f=fileInput.files[0];const obj={id:fileId.value||uid(),name:(fileName.value||f?.name||'Arquivo sem nome').trim(),category:fileCategory.value,project:fileProject.value,link:fileLink.value.trim(),size:f?formatBytes(f.size):(fileId.value?(data.files.find(x=>x.id===fileId.value)?.size||''):'Metadado local'),notes:fileNotes.value.trim(),created:today()};const idx=data.files.findIndex(x=>x.id===obj.id);if(idx>=0)data.files[idx]=obj;else data.files.unshift(obj);saveData();resetFileForm();renderFiles();renderMetrics();toast('Arquivo cadastrado.');}
+function resetFileForm(){fileForm.reset();fileId.value=''}
+function renderFiles(){const grid=document.getElementById('libraryGrid');if(!grid)return;const q=normalize(fileSearch?.value||'');const files=data.files.filter(f=>!q||normalize(Object.values(f).join(' ')).includes(q));grid.innerHTML=files.length?files.map(f=>`<article class="file-card"><div class="file-icon">${fileIcon(f.category)}</div><h3>${escapeHtml(f.name)}</h3><p><b>${escapeHtml(f.category)}</b> • ${escapeHtml(f.project)} • ${escapeHtml(f.size||'Sem tamanho')}<br>${escapeHtml(f.notes||'Sem observações.')}</p><div class="card-actions">${f.link?`<a class="btn secondary small" href="${escapeAttr(f.link)}" target="_blank">Abrir link</a>`:''}<button class="btn secondary small" onclick="editFile('${f.id}')">Editar</button><button class="btn secondary small" onclick="deleteFile('${f.id}')">Excluir</button></div></article>`).join(''):'<div class="empty">Nenhum arquivo encontrado.</div>'}
+function fileIcon(cat){return ({Relatório:'DOC',Pesquisa:'MAP',Planilha:'XLS',Proposta:'PDF',Imagem:'IMG',Legislação:'LEX'})[cat]||'ARQ'}
+function editFile(id){const f=data.files.find(x=>x.id===id);if(!f)return;fileId.value=f.id;fileName.value=f.name;fileCategory.value=f.category;fileProject.value=f.project;fileLink.value=f.link||'';fileNotes.value=f.notes||'';fileName.focus()}
+function deleteFile(id){if(confirm('Excluir este arquivo da biblioteca?')){data.files=data.files.filter(f=>f.id!==id);saveData();renderFiles();renderMetrics();toast('Arquivo excluído.')}}
+function renderReports(){const cards=[{t:'Relatório semanal',d:'Compilação de tramitações, matérias novas, atividades da consultoria e pendências.'},{t:'Relatório mensal',d:'Síntese executiva, entregas realizadas, articulações, riscos e próximos passos.'},{t:'Relatório semestral',d:'Linha do tempo, indicadores, projetos acompanhados, gargalos e resultados institucionais.'},{t:'Relatório de bloqueios',d:'Diagnóstico dos problemas técnicos/operacionais do Governor e seus impactos.'},{t:'Agenda legislativa',d:'Pautas, comissões, relatores, projetos prioritários e recomendação de ação.'},{t:'Pesquisa territorial',d:'Mapas, indicadores e painéis comparativos para subsidiar decisão estratégica.'}];const el=document.getElementById('reportCards');if(el)el.innerHTML=cards.map(c=>`<article class="report-card"><h3>${c.t}</h3><p>${c.d}</p></article>`).join('');generateWeeklyReport(false)}
+function generateWeeklyReport(show=true){const total=data.activities.length, done=countBy('status','realizado'), block=countBy('status','bloqueio'), dev=countBy('status','desenvolvimento'), run=countBy('status','andamento');const urg=data.activities.filter(a=>a.priority==='urgente');const next=[...data.activities].filter(a=>a.due&&a.status!=='realizado').sort((a,b)=>sortDate(a.due)-sortDate(b.due)).slice(0,4);const text=`<strong>Resumo da operação</strong><p>No momento, a central possui ${total} atividades cadastradas: ${done} realizadas, ${run} em andamento, ${block} bloqueadas e ${dev} em desenvolvimento. Existem ${urg.length} demandas urgentes. Próximas entregas: ${next.length?next.map(a=>escapeHtml(a.title)+' ('+formatDate(a.due)+')').join('; '):'nenhuma entrega com prazo cadastrado'}.</p>`;const el=document.getElementById('autoReport');if(el)el.innerHTML=text;if(show)toast('Resumo atualizado.')}
+function renderResearches(){const el=document.getElementById('researchCards');if(!el)return;el.innerHTML=data.researches.map(r=>`<article class="research-card"><h3>${escapeHtml(r.title)}</h3><p>${escapeHtml(r.description)}</p><div class="preview"><div class="research-metrics">${(r.metrics||['Indicador','Mapa','Base']).slice(0,3).map(m=>`<div><b>${escapeHtml(m).slice(0,12)}</b><span>Indicador</span></div>`).join('')}</div></div><div class="tags"><span class="tag alta">${escapeHtml(r.category)}</span><span class="tag">Pesquisa</span></div><div class="card-actions"><a class="btn secondary small" href="${escapeAttr(r.link)}" target="_blank">Abrir painel</a><button class="btn secondary small" onclick="editResearch('${r.id}')">Editar</button><button class="btn secondary small" onclick="deleteResearch('${r.id}')">Excluir</button></div></article>`).join('')}
+function addResearchPrompt(){researchFormPanel.style.display='block';researchForm.reset();researchId.value='';researchTitle.focus()}
+function closeResearchForm(){researchFormPanel.style.display='none';researchForm.reset();researchId.value=''}
+function saveResearch(e){e.preventDefault();const obj={id:researchId.value||uid(),title:researchTitle.value.trim(),category:researchCategory.value,link:researchLink.value.trim(),description:researchDescription.value.trim(),metrics:['Painel','Mapa','Base']};const idx=data.researches.findIndex(r=>r.id===obj.id);if(idx>=0)data.researches[idx]={...data.researches[idx],...obj};else data.researches.unshift(obj);saveData();closeResearchForm();renderResearches();renderMetrics();toast('Pesquisa salva.')}
+function editResearch(id){const r=data.researches.find(x=>x.id===id);if(!r)return;researchFormPanel.style.display='block';researchId.value=r.id;researchTitle.value=r.title;researchCategory.value=r.category;researchLink.value=r.link;researchDescription.value=r.description;researchTitle.focus()}
+function deleteResearch(id){if(confirm('Excluir esta pesquisa?')){data.researches=data.researches.filter(r=>r.id!==id);saveData();renderResearches();renderMetrics();toast('Pesquisa excluída.')}}
+
+function renderCftaProjects(){
+  if(!document.getElementById('projectsTableBody'))return;
+  data.projects = data.projects || [];
+  const q=normalize(document.getElementById('projectSearch')?.value||'');
+  populateProjectFilters();
+  const cf=document.getElementById('projectCommissionFilter')?.value||'';
+  const sf=document.getElementById('projectStageFilter')?.value||'';
+  const pf=document.getElementById('projectPriorityFilter')?.value||'';
+  const rows=data.projects.filter(p=>{
+    const okQ=!q||normalize(Object.values(p).join(' ')).includes(q);
+    const okC=!cf||p.commission===cf;
+    const okS=!sf||p.stage===sf||p.situation===sf;
+    const okP=!pf||p.priority===pf;
+    return okQ&&okC&&okS&&okP;
+  });
+  const ready=data.projects.filter(p=>normalize(p.stage).includes('pronta')||normalize(p.situation).includes('pronta')).length;
+  const rel=data.projects.filter(p=>normalize(p.stage+p.situation).includes('relator')).length;
+  const ccp=data.projects.filter(p=>normalize(p.commission).includes('ccp')||normalize(p.stage).includes('ccp')).length;
+  const urg=data.projects.filter(p=>p.priority==='urgente').length;
+  document.getElementById('navProjects').textContent=data.projects.length;
+  document.getElementById('projectMetrics').innerHTML=`
+    <div class="metric"><b>${data.projects.length}</b><span>Projetos cadastrados</span><em>Base legislativa editável do CFTA.</em></div>
+    <div class="metric blue"><b>${ready}</b><span>Prontos para pauta</span><em>Matérias com maior potencial de avanço imediato.</em></div>
+    <div class="metric orange"><b>${rel}</b><span>Relatoria / parecer</span><em>Projetos que exigem articulação com relator.</em></div>
+    <div class="metric red"><b>${ccp}</b><span>Na CCP</span><em>Dependem de distribuição/destravamento.</em></div>`;
+  document.getElementById('projectsTableBody').innerHTML=rows.map(p=>`<tr>
+    <td><strong>${escapeHtml(p.code)}</strong><br/><span class="tag ${escapeAttr(p.priority)}">${priorityLabel(p.priority)}</span></td>
+    <td>${escapeHtml(p.theme)}</td>
+    <td>${escapeHtml(p.situation)}<br/><small>${escapeHtml(p.stage||'')}</small></td>
+    <td>${escapeHtml(p.commission||'')}</td>
+    <td>${escapeHtml(p.action||'')}</td>
+    <td><strong>Realizado:</strong> ${escapeHtml(p.done||'—')}<br/><strong>Próximo:</strong> ${escapeHtml(p.next||'—')}</td>
+    <td><button class="btn secondary small" onclick="editProject('${escapeAttr(p.id)}')">Editar</button><button class="btn secondary small" onclick="projectToActivity('${escapeAttr(p.id)}')">Kanban</button></td>
+  </tr>`).join('') || '<tr><td colspan="7">Nenhum projeto encontrado.</td></tr>';
+}
+function populateProjectFilters(){
+  const fill=(id, values)=>{const el=document.getElementById(id);if(!el)return;const current=el.value;const first=el.querySelector('option')?.outerHTML||'<option value="">Todos</option>';el.innerHTML=first+[...new Set(values.filter(Boolean))].sort().map(v=>`<option value="${escapeAttr(v)}">${escapeHtml(v)}</option>`).join('');el.value=current;};
+  fill('projectCommissionFilter', (data.projects||[]).map(p=>p.commission));
+  fill('projectStageFilter', (data.projects||[]).map(p=>p.stage||p.situation));
+}
+function saveProject(e){
+  e.preventDefault();
+  const obj={id:projectId.value||'proj-'+normalize(projectCode.value).replace(/[^a-z0-9]+/g,'-')+'-'+Date.now().toString(36),code:projectCode.value.trim(),theme:projectTheme.value.trim(),situation:projectSituation.value.trim(),commission:projectCommission.value.trim(),action:projectAction.value.trim(),priority:projectPriority.value,stage:projectStage.value.trim(),owner:projectOwner.value.trim(),done:projectDone.value.trim(),next:projectNext.value.trim(),notes:projectNotes.value.trim()};
+  const idx=(data.projects||[]).findIndex(p=>p.id===obj.id);
+  if(idx>=0)data.projects[idx]={...data.projects[idx],...obj};else data.projects.unshift(obj);
+  saveData();renderCftaProjects();renderMetrics();toast('Projeto salvo.');
+}
+function editProject(id){
+  const p=(data.projects||[]).find(x=>x.id===id);if(!p)return;openTab('projetosCfta');
+  projectId.value=p.id;projectCode.value=p.code||'';projectTheme.value=p.theme||'';projectSituation.value=p.situation||'';projectCommission.value=p.commission||'';projectAction.value=p.action||'';projectPriority.value=p.priority||'alta';projectStage.value=p.stage||'';projectOwner.value=p.owner||'';projectDone.value=p.done||'';projectNext.value=p.next||'';projectNotes.value=p.notes||'';
+  document.getElementById('projectFormPanel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function resetProjectForm(){if(document.getElementById('projectForm')){projectForm.reset();projectId.value='';projectPriority.value='alta';}}
+function projectToActivity(id){
+  const p=(data.projects||[]).find(x=>x.id===id);if(!p)return;
+  data.activities.unshift({id:uid(),title:`${p.code} — ${p.action||'Acompanhar projeto'}`,project:'Congresso',owner:p.owner||'Ana Paula / Vitor',status:'desenvolvimento',priority:p.priority||'alta',due:'',type:'Legislativo',description:p.theme||'',detail:`Situação: ${p.situation||''}. Comissão/órgão: ${p.commission||''}. Próximo passo: ${p.next||p.action||''}`});
+  saveData();renderAll();toast('Atividade criada no Kanban.');
+}
+function renderCongressConsulting(){
+  if(!document.getElementById('congressMetrics'))return;
+  data.congressActions=data.congressActions||[];
+  const total=data.congressActions.length, done=data.congressActions.filter(a=>a.status==='realizado').length, run=data.congressActions.filter(a=>a.status==='andamento').length, pend=data.congressActions.filter(a=>a.status==='pendente').length, urg=data.congressActions.filter(a=>a.priority==='urgente').length;
+  document.getElementById('congressMetrics').innerHTML=`
+    <div class="metric"><b>${total}</b><span>Ações da consultoria</span><em>Reuniões, gabinetes, relatórios e relatorias.</em></div>
+    <div class="metric blue"><b>${run}</b><span>Em andamento</span><em>Atividades já iniciadas pela equipe.</em></div>
+    <div class="metric orange"><b>${pend}</b><span>A desenvolver</span><em>Próximas ações de campo e gabinete.</em></div>
+    <div class="metric red"><b>${urg}</b><span>Urgentes</span><em>Prioridades da semana.</em></div>`;
+  const card=a=>`<div class="list-item"><strong>${escapeHtml(a.title)}</strong><p><b>${escapeHtml(a.category||'')}</b> • ${escapeHtml(a.owner||'')}</p><p>${escapeHtml(a.detail||'')}</p><div class="tags"><span class="tag ${escapeAttr(a.priority)}">${priorityLabel(a.priority)}</span><span class="tag">${a.status==='realizado'?'Realizado':a.status==='andamento'?'Em andamento':'A desenvolver'}</span></div><div class="card-actions"><button class="btn secondary small" onclick="editCongressAction('${escapeAttr(a.id)}')">Editar</button><button class="btn secondary small" onclick="congressToActivity('${escapeAttr(a.id)}')">Kanban</button></div></div>`;
+  document.getElementById('congressDoneList').innerHTML=data.congressActions.filter(a=>a.status==='realizado'||a.status==='andamento').map(card).join('')||'<div class="empty">Nenhuma atividade desenvolvida cadastrada.</div>';
+  document.getElementById('congressTodoList').innerHTML=data.congressActions.filter(a=>a.status==='pendente').map(card).join('')||'<div class="empty">Nenhuma atividade futura cadastrada.</div>';
+}
+function saveCongressAction(e){
+  e.preventDefault();
+  const obj={id:congressId.value||uid(),title:congressTitle.value.trim(),category:congressCategory.value.trim(),status:congressStatus.value,priority:congressPriority.value,owner:congressOwner.value.trim(),detail:congressDetail.value.trim()};
+  const idx=(data.congressActions||[]).findIndex(a=>a.id===obj.id);
+  if(idx>=0)data.congressActions[idx]={...data.congressActions[idx],...obj};else data.congressActions.unshift(obj);
+  saveData();renderCongressConsulting();toast('Ação da consultoria salva.');
+}
+function editCongressAction(id){
+  const a=(data.congressActions||[]).find(x=>x.id===id);if(!a)return;openTab('congresso');
+  congressId.value=a.id;congressTitle.value=a.title||'';congressCategory.value=a.category||'';congressStatus.value=a.status||'pendente';congressPriority.value=a.priority||'alta';congressOwner.value=a.owner||'';congressDetail.value=a.detail||'';
+  document.getElementById('congressFormPanel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function resetCongressForm(){if(document.getElementById('congressForm')){congressForm.reset();congressId.value='';congressPriority.value='alta';congressStatus.value='pendente';}}
+function congressToActivity(id){
+  const a=(data.congressActions||[]).find(x=>x.id===id);if(!a)return;
+  data.activities.unshift({id:uid(),title:a.title,project:'Congresso',owner:a.owner||'Ana Paula / Vitor',status:a.status==='realizado'?'realizado':a.status==='andamento'?'andamento':'desenvolvimento',priority:a.priority||'alta',due:'',type:'Legislativo',description:a.category||'',detail:a.detail||''});
+  saveData();renderAll();toast('Ação enviada ao Kanban.');
+}
+
+function exportData(){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='backup-central-cfta-belli-governor.json';a.click();URL.revokeObjectURL(url)}
+function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const imported=JSON.parse(reader.result);if(!imported.activities)throw new Error('Formato inválido');data=migrateData(imported);saveData();renderAll();toast('Backup importado.')}catch(err){alert('Arquivo inválido.')}};reader.readAsText(file)}
+function resetDemo(){if(confirm('Resetar para os dados iniciais?')){data=structuredClone(initialData);saveData();renderAll();toast('Dados iniciais restaurados.')}}
+function statusLabel(s){return statuses[s]?.label||labelize(s)}
+function priorityLabel(p){return ({urgente:'Urgente',alta:'Alta',media:'Média',baixa:'Baixa',fixa:'Demanda fixa',manual:'Fluxo manual'})[p]||labelize(p)}
+function labelize(s){return (s||'').toString().replace(/-/g,' ').replace(/^./,c=>c.toUpperCase())}
+function formatDate(d){if(!d)return '';const [y,m,day]=d.split('-');return `${day}/${m}/${y}`}
+function formatBytes(bytes){if(!bytes)return '';const units=['B','KB','MB','GB'];let i=0,n=bytes;while(n>=1024&&i<units.length-1){n/=1024;i++}return `${n.toFixed(n<10&&i>0?1:0)} ${units[i]}`}
+function escapeHtml(str){return (str||'').toString().replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function escapeAttr(str){return escapeHtml(str).replace(/`/g,'&#96;')}
+window.addEventListener('load',()=>{saveData();renderAll()});
+</script>
+</body>
+</html>
