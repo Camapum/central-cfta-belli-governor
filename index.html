@@ -53,6 +53,9 @@
     @media(max-width:1220px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.nav{grid-template-columns:repeat(4,1fr)}.side-panel{display:none}.board{grid-template-columns:repeat(2,1fr)}.grid-4,.routine-grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.library-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:760px){.content{padding:16px 12px 36px}.topbar{display:block}.actions{justify-content:flex-start;margin-top:14px}.nav{grid-template-columns:1fr 1fr}.panel{border-radius:20px;padding:16px}.board,.grid-4,.grid-3,.grid-2,.form-grid,.library-grid,.routine-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.calendar{gap:5px}.day{min-height:86px;border-radius:12px;padding:6px}.day-name{font-size:10px;padding:5px}.event-pill{display:none}.meta{grid-template-columns:1fr}.sidebar{padding:16px 12px}.table th,.table td{font-size:12px}.research-metrics{grid-template-columns:1fr}}
     @media print{.sidebar,.actions,.filters,.card-actions,.calendar-tools,.btn,.form-panel{display:none!important}.app{display:block}.content{padding:0}.tab{display:block}.tab:not(.active){display:block}.panel,.metric,.column,.card{box-shadow:none;break-inside:avoid}.board{grid-template-columns:repeat(2,1fr)}body{background:#fff}}
+    .map-embed{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fbfcfa;box-shadow:var(--shadow-sm)}
+    .map-embed iframe{display:block;width:100%;height:calc(100vh - 260px);min-height:520px;border:0}
+    @media(max-width:760px){.map-embed iframe{height:70vh;min-height:420px}}
   </style>
 </head>
 <body>
@@ -69,6 +72,7 @@
         <button data-tab="biblioteca" onclick="openTab('biblioteca')">📚 Biblioteca</button>
         <button data-tab="relatorios" onclick="openTab('relatorios')">📝 Relatórios</button>
         <button data-tab="pesquisas" onclick="openTab('pesquisas')">🗺️ Pesquisas</button>
+        <button data-tab="mapa" onclick="openTab('mapa')">🧠 Mapa CFTA</button>
         <button data-tab="configuracoes" onclick="openTab('configuracoes')">⚙️ Configurações</button>
       </nav>
       <div class="side-panel"><b>Princípio operacional</b><p>Demandas fixas não têm prazo formal, mas devem ser tratadas como prioridade de execução até serem concluídas ou automatizadas.</p></div>
@@ -78,7 +82,7 @@
     <main class="content">
       <header class="topbar">
         <div>
-          <span class="eyebrow">Painel interno • versão 2.0</span>
+          <span class="eyebrow">Painel interno • versão 2.1</span>
           <h1>Operação CFTA<br/>Belli + Governor</h1>
           <p class="subtitle">Central para acompanhar atividades, agenda, bloqueios, arquivos, relatórios e pesquisas estratégicas. O arquivo continua autônomo, mas agora funciona como um MVP de sistema operacional.</p>
         </div>
@@ -305,6 +309,16 @@
             </div>
             <div class="actions" style="justify-content:flex-start;margin-top:14px"><button class="btn" type="submit">Salvar pesquisa</button><button type="button" class="btn secondary" onclick="closeResearchForm()">Cancelar</button></div>
           </form>
+        </section>
+      </section>
+
+      <section id="mapa" class="tab">
+        <section class="panel">
+          <div class="panel-title">
+            <div><h2>Mapa de Inteligência CFTA</h2><p>Mapa mental interativo com pautas estratégicas, temas, normas, proposições, órgãos e atores — relações legislativas, institucionais e regulatórias do CFTA. Clique nos nós para explorar, use a busca e os filtros por tipo.</p></div>
+            <a class="btn secondary small" href="https://camapum.github.io/mapa-cfta-inteligencia/" target="_blank" rel="noopener">Abrir em tela cheia ↗</a>
+          </div>
+          <div class="map-embed"><iframe id="mapFrame" data-src="https://camapum.github.io/mapa-cfta-inteligencia/" title="Mapa Mental Interativo CFTA" loading="lazy" allowfullscreen></iframe></div>
         </section>
       </section>
 
@@ -954,9 +968,11 @@ const initialData = {
     {id:uid(),name:'Agenda Legislativa da Agroindústria',category:'Relatório',project:'Agroindústria',link:'',size:'',notes:'Sinopse e planilhas consolidadas de projetos de maior aderência ao CFTA.',created:today()},
     {id:uid(),name:'Mapeamento político e comissões',category:'Legislação',project:'Belli',link:'',size:'',notes:'Perfil de comissões, lideranças influentes e projetos centrais por comissão.',created:today()},
     {id:uid(),name:'Painel — Fumo em folha seca por UF',category:'Pesquisa',project:'Pesquisas',link:'https://camapum.github.io/mapas-fumo/',size:'Link externo',notes:'Painel autônomo com indicadores, gráficos e mapas por UF.',created:today()},
-    {id:uid(),name:'Painel — Déficit Técnico',category:'Pesquisa',project:'Pesquisas',link:'https://camapum.github.io/mapas-deficit-tecnico/',size:'Link externo',notes:'Painel de produção agropecuária, densidade técnica e déficit técnico.',created:today()}
+    {id:uid(),name:'Painel — Déficit Técnico',category:'Pesquisa',project:'Pesquisas',link:'https://camapum.github.io/mapas-deficit-tecnico/',size:'Link externo',notes:'Painel de produção agropecuária, densidade técnica e déficit técnico.',created:today()},
+    {id:uid(),name:'Mapa de Inteligência CFTA',category:'Pesquisa',project:'CFTA',link:'https://camapum.github.io/mapa-cfta-inteligencia/',size:'Link externo',notes:'Mapa mental interativo de inteligência normativa, legislativa e regulatória do CFTA.',created:today()}
   ],
   researches:[
+    {id:uid(),title:'Mapa de Inteligência CFTA',category:'Mapa interativo',link:'https://camapum.github.io/mapa-cfta-inteligencia/',description:'Mapa mental interativo com pautas estratégicas, temas, normas, proposições, órgãos e atores — inteligência normativa, legislativa e regulatória do CFTA. Também disponível na aba Mapa CFTA deste painel.',metrics:['Pautas','Normas','Atores']},
     {id:uid(),title:'Painel — Fumo em folha seca por UF',category:'Dashboard',link:'https://camapum.github.io/mapas-fumo/',description:'Painel autônomo com produção nacional, área colhida, estabelecimentos com fumo, concentração regional, gráficos e mapas por UF.',metrics:['Produção nacional','Área colhida','Estabelecimentos']},
     {id:uid(),title:'Painel Interativo — Déficit Técnico',category:'Mapa interativo',link:'https://camapum.github.io/mapas-deficit-tecnico/',description:'Capítulo interativo com mapas de Produção (VPA), Densidade Técnica e Déficit Técnico (P5), voltado a diagnóstico territorial e priorização.',metrics:['VPA','Densidade','Déficit P5']},
     {id:uid(),title:'Cruzamento Federal × Estadual — Agroindústria',category:'Diagnóstico territorial',link:'#',description:'Espaço reservado para o estudo comparativo de legislação federal e estadual de agroindústria, inspeção, sanidade, SUASA e responsabilidade técnica.',metrics:['Federal','Estadual','RT']},
@@ -995,7 +1011,7 @@ function mergeSeeds(current, seeds, key){
 function saveData(){localStorage.setItem(STORAGE_KEY, JSON.stringify(data))}
 function normalize(str){return (str||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
-function openTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'});renderAll()}
+function openTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));if(id==='mapa'){const f=document.getElementById('mapFrame');if(f&&!f.src)f.src=f.dataset.src}window.scrollTo({top:0,behavior:'smooth'});renderAll()}
 function clearFilters(){['search','statusFilter','priorityFilter'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});renderAll()}
 function setQuickFilter(status){openTab('kanban');setTimeout(()=>{document.getElementById('statusFilter').value=status;renderAll()},80)}
 function toggleDetails(){detailsOpen=!detailsOpen;renderBoard()}
